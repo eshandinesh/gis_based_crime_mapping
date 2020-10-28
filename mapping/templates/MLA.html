@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>ELECTION MANAGEMENT SYSTEM</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+
+      .bg-1 {
+      background-color:Orange; /* Green */
+      color: #ffffff;
+  }
+
+  </style>
+</head>
+<body style="background-color:#FF6D00;">
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{%url 'home'%}" style="color: white; text-shadow: 4px 4px 8px #BDBDBD;">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="{%url 'home'%}" style="color: white; text-shadow: 4px 4px 8px #BDBDBD;">HOME</a></li>
+
+        <li><a href="{%url 'vidhan'%}" style="color: white; text-shadow: 4px 4px 8px #BDBDBD;">MAP</a></li>
+        <li><a href="{%url 'tasktoall'%}" style="color: white; text-shadow: 4px 4px 8px #BDBDBD;">TASK TO ALL</a></li>
+          <li><a href="{%url 'globalreport'%}" style="color: white; text-shadow: 4px 4px 8px #BDBDBD;">VIEW REPORT</a></li>
+          <li><a href="{%url 'T'%}" style="color: white; text-shadow: 4px 4px 8px #BDBDBD;">VIEW TASK</a></li>
+           <li><a href="{%url 'home'%}" style="color: white; text-shadow: 4px 4px 8px #BDBDBD;">CONTACT US</a></li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+<div class="container-fluid">
+     <div class="table-responsive">
+       <div class="col-sm-12 text-center"  style="background-color:#FF6D00;">
+         <h1 style="color:#FFFFFF;  text-shadow: 4px 4px 8px #000000; ">LIST OF MEMBER OF LEGISLATIVE ASSEMBLY IN MADHYA PRADESH</h1>
+       </div>
+  <table class="table table-bordered">
+    <thead>
+      <tr style="background-color:#1B5E20;">
+        <th class="text-center" style="color:#FFFFFF;  text-shadow: 4px 4px 8px #000000; ">S.No.</th>
+        <th class="text-center" style="color:#FFFFFF;  text-shadow: 4px 4px 8px #000000; ">NAME OF MEMBER OF LEGISLATIVE ASSEMBLY</th>
+        <th class="text-center" style="color:#FFFFFF;  text-shadow: 4px 4px 8px #000000; ">NAME OF CONSTITUENCY</th>
+        <th class="text-center" style="color:#FFFFFF;  text-shadow: 4px 4px 8px #000000; ">TASK</th>
+        <th class="text-center" style="color:#FFFFFF;  text-shadow: 4px 4px 8px #000000; ">STATUS OF TASK</th>
+        <th class="text-center" style="color:#FFFFFF;  text-shadow: 4px 4px 8px #000000; ">REPORT OF COMPLETED TASK</th>
+          <th class="text-center" style="color:#FFFFFF;  text-shadow: 4px 4px 8px #000000; ">MAP</th>
+          <th class="text-center" style="color:#FFFFFF; text-shadow: 4px 4px 8px #000000; ">VIDEO CALL</th>
+      </tr>
+    </thead>
+    <tbody>
+
+     <tr style="background-color:#F0F4C3;">
+        <td class="text-center" style="color:black;  text-shadow: 4px 4px 8px green; ">1</td>
+       <td class="text-center"><a href="{%url 'VOLN'%}" style="color:black;  text-shadow: 4px 4px 8px green; ">Shri Narayan Singh Kushwah</a></td>
+        <td class="text-center" style="color:black;  text-shadow: 4px 4px 8px green; ">Gwalior North</td>
+         <td class="text-center"><form action="{% url 'task'%}" method="post" id="usrform" enctype="multipart/form-data"> {% csrf_token %}
+         <input type="hidden" name="rnum" id="rnum" value="9805249419"/>
+             <input type="hidden" name="rname" id="rname" value="Shri Narayan Singh Kushwah"/>
+             <input type="hidden" name="sname" id="sname" value="7697737090"/>
+             <input class="w3-input w3-border w3-margin-bottom" type="hidden" id="ls1" name="ls1" value="Gwalior North" required/>
+             <input style="background-color:#4CAF50;color:white;  text-shadow: 4px 4px 8px green; width:80px height:40px; " align="center" type="submit" value="TASK">
+
+         </form></td>
+        <td class="text-center" style="background-color:#4CAF50; color:#FFFFFF;  text-shadow: 4px 4px 8px black; ">COMPLETED</td>
+        <td class="text-center"> <a href="{% url 'localreport'%}" ><button type="button" class="btn btn-danger" style="color:white;  text-shadow: 4px 4px 8px black; ">VIEW REPORT</button></a></td>
+         <td class="text-center"><a href="{%url 'boo1'%}" style="color:black;  text-shadow: 4px 4px 8px green; ">BOOTH-1-MAP</a></td>
+         <td class="text-center"> <a href="{% url 'task'%}"  ><button style="color:white;  text-shadow: 4px 4px 8px black; " type="button" class="btn btn-success">CALL</button></a></td>
+      </tr>
+       <tr style="background-color:#DCEDC8;">
+        <td class="text-center" style="color:black;  text-shadow: 4px 4px 8px green; ">2</td>
+         <td class="text-center"><a href="{%url 'home'%}" style="color:black;  text-shadow: 4px 4px 8px green; ">Shri Jaibhan Singh Pawaiya</a></td>
+        <td class="text-center" style="color:black;  text-shadow: 4px 4px 8px green; ">Gwalior</td>
+         <td class="text-center"> <a href="{% url 'task'%}" ><button type="button" class="btn btn-success" style="color:white;  text-shadow: 4px 4px 8px black; ">TASK</button></a></td>
+        <td class="text-center" style="background-color:#4CAF50; color:#FFFFFF;  text-shadow: 4px 4px 8px black; ">COMPLETED</td>
+        <td class="text-center"> <a href="{% url 'localreport'%}" ><button type="button" class="btn btn-danger" style="color:white;  text-shadow: 4px 4px 8px black; ">VIEW REPORT</button></a></td>
+           <td class="text-center"><a href="{%url 'boo2'%}" style="color:black;  text-shadow: 4px 4px 8px green; ">BOOTH-2-MAP</a></td>
+           <td class="text-center"> <a href="{% url 'task'%}"  ><button style="color:white;  text-shadow: 4px 4px 8px black; " type="button" class="btn btn-success">CALL</button></a></td>
+      </tr>
+      <tr style="background-color:#F0F4C3;">
+        <td class="text-center" style="color:black;  text-shadow: 4px 4px 8px green; ">3</td>
+        <td class="text-center"><a href="{%url 'home'%}" style="color:black;  text-shadow: 4px 4px 8px green; ">Smt. Maya Singh</a></td>
+        <td class="text-center" style="color:black;  text-shadow: 4px 4px 8px green; ">Gwalior East</td>
+         <td class="text-center"> <a href="{% url 'task'%}" ><button type="button" class="btn btn-success" style="color:white;  text-shadow: 4px 4px 8px black; ">TASK</button></a></td>
+        <td class="text-center" style="background-color:#4CAF50; color:#FFFFFF;  text-shadow: 4px 4px 8px black; ">COMPLETED</td>
+        <td class="text-center"> <a href="{% url 'localreport'%}" ><button type="button" class="btn btn-danger" style="color:white;  text-shadow: 4px 4px 8px black; ">VIEW REPORT</button></a></td>
+          <td class="text-center"><a href="{%url 'boo3'%}" style="color:black;  text-shadow: 4px 4px 8px green; ">BOOTH-3-MAP</a></td>
+          <td class="text-center"> <a href="{% url 'task'%}"  ><button style="color:white;  text-shadow: 4px 4px 8px black; " type="button" class="btn btn-success">CALL</button></a></td>
+      </tr>
+      <tr style="background-color:#DCEDC8;">
+        <td class="text-center" style="color:black;  text-shadow: 4px 4px 8px green; ">4</td>
+        <td class="text-center"><a href="{%url 'home'%}" style="color:black;  text-shadow: 4px 4px 8px green; ">Shri Anoop Mishra</a></td>
+        <td class="text-center" style="color:black;  text-shadow: 4px 4px 8px green; ">Bhitarwar</td>
+         <td class="text-center"> <a href="{% url 'task'%}" ><button type="button" class="btn btn-success" style="color:white;  text-shadow: 4px 4px 8px black; ">TASK</button></a></td>
+        <td class="text-center" style="background-color:#4CAF50; color:#FFFFFF;  text-shadow: 4px 4px 8px black; ">COMPLETED</td>
+        <td class="text-center"> <a href="{% url 'localreport'%}" ><button type="button" class="btn btn-danger" style="color:white;  text-shadow: 4px 4px 8px black; ">VIEW REPORT</button></a></td>
+          <td class="text-center"><a href="{%url 'boo1'%}" style="color:black;  text-shadow: 4px 4px 8px green; ">BOOTH-1-MAP</a></td>
+          <td class="text-center"> <a href="{% url 'task'%}"  ><button style="color:white;  text-shadow: 4px 4px 8px black; " type="button" class="btn btn-success">CALL</button></a></td>
+      </tr>
+         <tr style="background-color:#F0F4C3;">
+        <td class="text-center" style="color:black;  text-shadow: 4px 4px 8px green; ">5</td>
+           <td class="text-center"><a href="{%url 'home'%}" style="color:black;  text-shadow: 4px 4px 8px green; ">Shri Suresh Raje</a></td>
+        <td class="text-center" style="color:black;  text-shadow: 4px 4px 8px green; ">Dabra</td>
+        <td class="text-center"> <a href="{% url 'task'%}" ><button type="button" class="btn btn-success" style="color:white;  text-shadow: 4px 4px 8px black; ">TASK</button></a></td>
+        <td class="text-center" style="background-color:#4CAF50; color:#FFFF; text-shadow: 4px 4px 8px black; ">COMPLETED</td>
+        <td class="text-center"> <a href="{% url 'localreport'%}" ><button type="button" class="btn btn-danger" style="color:white;  text-shadow: 4px 4px 8px black; ">VIEW REPORT</button></a></td>
+             <td class="text-center"><a href="{%url 'boo1'%}" style="color:black;  text-shadow: 4px 4px 8px green; ">BOOTH-1-MAP</a></td>
+             <td class="text-center"> <a href="{% url 'task'%}"  ><button style="color:white;  text-shadow: 4px 4px 8px black; " type="button" class="btn btn-success">CALL</button></a></td>
+      </tr>
+
+
+    </tbody>
+  </table>
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{title}}</title>
+    <meta name="viewport" content="initial-scale=1.0">
+     <meta http-equiv="refresh" content="50000000000000000;URL='http://127.0.0.1:8000/joint'">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+
+
+      var map;
+      function initMap() {
+       map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 17,
+          center: {lat: 26 , lng: 78}
+        });
+        var londelist=[];
+        if ({{kisa}} != null){
+        for (var k =0; k <{{kisa}}.length; k++){
+        var line={{kisa}}[k];
+        console.log({lat: line[1], lng: line[0]});
+        londelist.push ({lat: line[1], lng:line[0]});
+        var marker = new google.maps.Marker({
+        position:{lat: line[1], lng:line[0]},
+        label: "K",
+        title: 'KISAN CENTER',
+        animation:google.maps.Animation.DROP,
+        map: map
+        });
+         marker.addListener('click', function() {
+         
+        });
+        }
+}
+         var bounds = {
+          north: {{north}},
+          south: {{south}},
+          east: {{east}},
+          west: {{west}}
+        };
+         map.fitBounds(bounds);
+         }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuCQItK2CtSoafNZkJduTGgsjGfGi2Fw4&callback=initMap">
+    </script>
+  </body>
+</html>

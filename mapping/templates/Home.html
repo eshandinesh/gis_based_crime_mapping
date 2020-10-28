@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Geolocation</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+   <table border ="0" width ="100%" bgcolor ="#D3D3D3" style="text-align:center">
+                   <tr>
+				   <td>
+				   <font size ="7" face = "Comic sans MS" color = "#4A148C" >PoliceGIS <br></font>
+				   </td>
+				   </tr>
+</table>
+
+
+    <div id="map"></div>
+    <script>
+      // Note: This example requires that you consent to location sharing when
+      // prompted by your browser. If you see the error "The Geolocation service
+      // failed.", it means you probably did not give permission for the browser to
+      // locate you.
+      var map, infoWindow;
+      var marker;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat:26.20554286060711  , lng:78.19940686225893},
+          zoom:15
+        });
+
+         var mapLabel = new MapLabel({
+  text: 'Test',
+  position: new google.maps.LatLng(26.20554286060711,78.19940686225893),
+  map: map,
+  fontSize: 20,
+  align: 'right'
+});
+
+        if ({{l}} != null){
+        for (var k =0; k <{{l}}.length; k++){
+        var line={{l}}[k];
+        console.log({lat: line[0], lng: line[1]});
+        var markerinfo = new google.maps.Marker({
+        position:{lat: line[0], lng:line[1]},
+        title: 'LONDE AT SERVICE',
+        animation:google.maps.Animation.DROP,
+        map: map
+        });
+        //markerinfo.Set(map);
+}
+}
+
+        map.addListener('click', addLatLng);
+              }
+
+
+ function addLatLng(event) {
+
+
+        latitude=event.latLng.lat();
+        longitude=event.latLng.lng();
+   document.getElementById('lat').value = latitude;
+      document.getElementById('lon').value = longitude;
+console.log(event.latLng)
+        if ( marker ) {
+    marker.setPosition(event.latLng);
+  } else {
+    marker = new google.maps.Marker({
+      position: event.latLng,
+      title: 'YOUR EXACT LOCATION',
+          animation:google.maps.Animation.BOUNCE,
+          map: map
+    });
+  }
+
+      }
+      function selectOnlyThis(id) {
+    for (var i = 1;i <= 4; i++)
+    {
+        document.getElementById(i).checked = false;
+    }
+    document.getElementById(id).checked = true;
+}
+    </script>
+   <form action="{% url 'cast' %}" method="post">{% csrf_token %}
+      <input type="text" step="0.0000000000000001" id="lat" name="lat" value="" />
+      <input type="text" step="0.0000000000000001" id="lon" name="lon" value=""/>
+      <input type="checkbox" id="1" name="general" value="general" onclick="selectOnlyThis(this.id)"/>GENERAL
+       <input type="checkbox" id="2" name="sc" value="sc"  onclick="selectOnlyThis(this.id)"/>SC
+       <input type="checkbox" id="3" name="st" value="st"  onclick="selectOnlyThis(this.id)"/>ST
+       <input type="checkbox" id="4" name="obc" value="obc"  onclick="selectOnlyThis(this.id)"/>OBC
+       <input type="submit" value="Submit" onclick="addLatLng"/>
+         </form>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuCQItK2CtSoafNZkJduTGgsjGfGi2Fw4&callback=initMap">
+    </script>
+  </body>
+</html>

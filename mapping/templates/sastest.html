@@ -1,0 +1,265 @@
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>INGRAM | Consumer Login</title>
+
+  <link href="../assets/common/img/favicon.png" rel="icon" type="image/png">
+    <link href="favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" type="text/css" href="../assets/vendors/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendors/jscrollpane/style/jquery.jscrollpane.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendors/ladda/dist/ladda-themeless.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendors/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendors/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendors/fullcalendar/dist/fullcalendar.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendors/cleanhtmlaudioplayer/src/player.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendors/cleanhtmlvideoplayer/src/player.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendors/bootstrap-sweetalert/dist/sweetalert.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendors/summernote/dist/summernote.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendors/owl.carousel/dist/assets/owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendors/ionrangeslider/css/ion.rangeSlider.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendors/datatables/media/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendors/c3/c3.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendors/chartist/dist/chartist.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/common/css/source/main.css">
+    <script src="../assets/vendors/jquery/jquery.min.js"></script>
+    <script src="../assets/vendors/tether/dist/js/tether.min.js"></script>
+    <script src="../assets/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../assets/vendors/jquery-mousewheel/jquery.mousewheel.min.js"></script>
+    <script src="../assets/vendors/jscrollpane/script/jquery.jscrollpane.min.js"></script>
+    <script src="../assets/vendors/spin.js/spin.js"></script>
+    <script src="../assets/vendors/ladda/dist/ladda.min.js"></script>
+    <script src="../assets/vendors/select2/dist/js/select2.full.min.js"></script>
+    <script src="../assets/vendors/html5-form-validation/dist/jquery.validation.min.js"></script>
+    <script src="../assets/vendors/jquery-typeahead/dist/jquery.typeahead.min.js"></script>
+    <script src="../assets/vendors/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
+    <script src="../assets/vendors/autosize/dist/autosize.min.js"></script>
+    <script src="../assets/vendors/bootstrap-show-password/bootstrap-show-password.min.js"></script>
+    <script src="../assets/vendors/moment/min/moment.min.js"></script>
+    <script src="../assets/vendors/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../assets/vendors/fullcalendar/dist/fullcalendar.min.js"></script>
+    <script src="../assets/vendors/cleanhtmlaudioplayer/src/jquery.cleanaudioplayer.js"></script>
+    <script src="../assets/vendors/cleanhtmlvideoplayer/src/jquery.cleanvideoplayer.js"></script>
+    <script src="../assets/vendors/bootstrap-sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../assets/vendors/remarkable-bootstrap-notify/dist/bootstrap-notify.min.js"></script>
+    <script src="../assets/vendors/summernote/dist/summernote.min.js"></script>
+    <script src="../assets/vendors/owl.carousel/dist/owl.carousel.min.js"></script>
+    <script src="../assets/vendors/ionrangeslider/js/ion.rangeSlider.min.js"></script>
+    <script src="../assets/vendors/nestable/jquery.nestable.js"></script>
+    <script src="../assets/vendors/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="../assets/vendors/datatables/media/js/dataTables.bootstrap4.min.js"></script>
+    <script src="../assets/vendors/datatables-fixedcolumns/js/dataTables.fixedColumns.js"></script>
+    <script src="../assets/vendors/datatables-responsive/js/dataTables.responsive.js"></script>
+    <script src="../assets/vendors/editable-table/mindmup-editabletable.js"></script>
+    <script src="../assets/vendors/d3/d3.min.js"></script>
+    <script src="../assets/vendors/c3/c3.min.js"></script>
+    <script src="../assets/vendors/chartist/dist/chartist.min.js"></script>
+    <script src="../assets/vendors/peity/jquery.peity.min.js"></script>
+    <script src="../assets/vendors/chartist-plugin-tooltip/dist/chartist-plugin-tooltip.min.js"></script>
+    <script src="../assets/vendors/gsap/src/minified/TweenMax.min.js"></script>
+    <script src="../assets/vendors/hackertyper/hackertyper.js"></script>
+    <script src="../assets/vendors/jquery-countTo/jquery.countTo.js"></script>
+    <script src="../assets/common/js/common.js"></script>
+    <script src="../assets/common/js/demo.temp.js"></script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-106490103-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-106490103-1');
+</script>
+
+<script src="includes/crypto.js"></script>
+ <script src="includes/sha256.js"></script>
+<script>
+     function encrypt()
+   {
+        var pass=document.getElementById('password').value;
+    var username=document.getElementById('uname').value;
+var saler='3FV7w42621482227';
+    if(pass==""|| username=="")
+    {
+       alert('Error:either username or password is wrong');
+       return false;
+    }
+    else
+    {
+
+             var dakd=CryptoJS.SHA256(pass);
+
+                     var aktiw =CryptoJS.SHA256(dakd+saler);
+
+             document.getElementById("password").value=aktiw;
+      return true;
+    }
+  }
+
+
+</script>
+ <style>
+        .errorWrap {
+    padding: 10px;
+
+    background: #fff;
+    border-left: 4px solid #dd3d36;
+    -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+}
+        </style>
+</head>
+<body class="theme-default">
+
+<section class="page-content">
+<div class="page-content-inner" style="background-image: url(../assets/common/img/temp/login/41.jpg)">
+ <h3 class="text-center" style="color: #fff; padding-top:6.5%;"><a href="../index.php" style="color:#fff">
+  Government of India    <br />
+Ministry of Consumer Affairs, Food & Public Distribution <br />
+Department of Consumer Affairs</a>
+                </h3>
+
+    <div class="single-page-block">
+        <div class="single-page-block-inner effect-3d-element">
+            <div class="blur-placeholder"><!-- --></div>
+            <div class="single-page-block-form">
+                <h3 class="text-center">
+                    <i class="icmn-enter margin-right-10"></i>
+                    User/ Consumer  Login
+                </h3>                  <br />
+                <form id="" name="form-validation" method="POST">
+
+                    <div class="form-group">
+                        <input id="uname"
+                               class="form-control"
+                               placeholder="Email or Username"
+                               name="uname"
+                               type="text"
+                               autocomplete="off" maxlength="60" required>
+                    </div>
+                    <div class="form-group">
+                        <input id="password"
+                               class="form-control password"
+                               name="passwrd"
+                               type="password" data-validation="[L>=6]"
+                               data-validation-message="$ must be at least 6 characters"
+                               placeholder="Password" autocomplete="off" maxlength="80" required>
+                    </div>
+                    <script>
+function refresh(){
+location.reload();
+}
+</script>
+                    <div class="form-group">
+
+                        <input name="captcha" type="text" placeholder="Captcha" class="mdl-textfield mdl-js-textfield"autocomplete="off" maxlength="80"  style="width: 50%; border-radius: .25rem;border: 1px solid #ccc; background-image: none;background-color: #fff;font-size: 1rem; padding: .375rem .75rem;line-height: 1.5;color: #55595c;">
+
+                               <img src="captchasignup.php" class="validate"  alt="" style="width: 20%; border-radius: .25rem;font-size: 1rem;line-height: 1.5">
+                  <i class="fa fa-refresh" aria-hidden="true" style="color:black !important"  onclick="return refresh()"></i>  </div>
+
+                    <div class="form-group">
+                        <a href="forgot-password.php" class="pull-right">Forgot Password?</a>
+                        <div class="checkbox">
+                            <label>
+
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-actions" style="text-align:center">
+                        <input type="submit" class="btn btn-primary width-150" onclick="return encrypt()" value="Sign In" name="login">
+                         <a href="signup.php" class="btn btn-primary width-150" >Sign Up</a>
+                    </div>
+                </form>
+<script type="text/javascript">
+ function blinker() {
+    $('.blink_me').fadeOut(500);
+    $('.blink_me').fadeIn(500);
+}
+setInterval(blinker, 1000);
+</script>
+<p><b><span style="color:red;size:14px" class="blink_me">Alert:</span> <a href="forgot-password.php">Click Here</a> to reset your password if registration was Before 13th September 2017</b></p>
+            </div>
+        </div>
+    </div>
+    <div class="single-page-block-footer text-center">
+
+    </div>
+    <!-- End Login Page -->
+
+</div>
+
+<!-- Page Scripts -->
+<script>
+    $(function() {
+
+        // Form Validation
+        $('#form-validation').validate({
+            submit: {
+                settings: {
+                    inputContainer: '.form-group',
+                    errorListClass: 'form-control-error',
+                    errorClass: 'has-danger'
+                }
+            }
+        });
+
+        // Show/Hide Password
+        $('.password').password({
+            eyeClass: '',
+            eyeOpenClass: 'icmn-eye',
+            eyeCloseClass: 'icmn-eye-blocked'
+        });
+
+        // Add class to body for change layout settings
+        $('body').addClass('single-page single-page-inverse');
+
+        // Set Background Image for Form Block
+        function setImage() {
+            var imgUrl = $('.page-content-inner').css('background-image');
+
+            $('.blur-placeholder').css('background-image', imgUrl);
+        };
+
+        function changeImgPositon() {
+            var width = $(window).width(),
+                    height = $(window).height(),
+                    left = - (width - $('.single-page-block-inner').outerWidth()) / 2,
+                    top = - (height - $('.single-page-block-inner').outerHeight()) / 2;
+
+
+            $('.blur-placeholder').css({
+                width: width,
+                height: height,
+                left: left,
+                top: top
+            });
+        };
+
+        setImage();
+        changeImgPositon();
+
+        $(window).on('resize', function(){
+            changeImgPositon();
+        });
+
+        // Mouse Move 3d Effect
+        var rotation = function(e){
+            var perX = (e.clientX/$(window).width())-0.5;
+            var perY = (e.clientY/$(window).height())-0.5;
+            TweenMax.to(".effect-3d-element", 0.4, { rotationY:15*perX, rotationX:15*perY,  ease:Linear.easeNone, transformPerspective:1000, transformOrigin:"center" })
+        };
+
+        if (!cleanUI.hasTouch) {
+            $('body').mousemove(rotation);
+        }
+
+    });
+</script>
+<!-- End Page Scripts -->
+</section>
+<div class="main-backdrop"><!-- --></div>
+</body>
+</html>

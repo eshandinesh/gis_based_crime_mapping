@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Simple markers</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+  <table border ="0" width ="100%" bgcolor ="#D3D3D3" style="text-align:center">
+                   <tr>
+				   <td>
+				   <font size ="7" face = "Comic sans MS" color = "#4A148C" >PoliceGIS <br></font>
+				   </td>
+				   </tr>
+</table>
+
+<table border ="0" width ="100%" bgcolor ="#D3D3D3">
+    <tr>
+           <td>
+                  <font size ="3" face = "Comic sans MS">
+                       <a href ="Home.html" target = "_self">Home</a>
+                  </font>
+           </td>
+           <td>
+                   <font size ="3" face = "Comic sans MS" color = "#4A148C">
+                        <a href ="Features.html" target = "_self">Features</a>
+                    </font>
+           </td>
+           <td>
+                    <font size ="3" face = "Comic sans MS" color = "#4A148C">
+                         <a href ="{% url 'signin' %}">Sign in</a>
+                    </font>
+			</td>
+			<td>
+					<font size ="3" face = "Comic sans MS" color = "#4A148C">
+							<a href ="Register.html" target = "_self">Register</a>
+					</font>
+			</td>
+			<td>
+					<font size ="3" face = "Comic sans MS" color = "#4A148C">
+							<a href ="Contact_us.html" target = "_self">Contact Us</a>
+					</font>
+			</td>
+	</tr>
+</table>
+    <div id="map"></div>
+    <script>
+
+      function initMap() {
+        var myLatLng = {lat: {{lat}}, lng: {{lon}}};
+        var serviceLatLng = {lat: {{pm}}, lng: {{pn}}};
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 16,
+          center: myLatLng
+        });
+
+        var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+          title: 'THIS YOUR FUCKING LOCATION'
+        });
+        var marker = new google.maps.Marker({
+          position: serviceLatLng,
+          map: map,
+          title: 'THIS IS THE CLOSEST FUCKING SERVICE FOR YOU ASSHOLE '
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuCQItK2CtSoafNZkJduTGgsjGfGi2Fw4&callback=initMap">
+    </script>
+  </body>
+</html>

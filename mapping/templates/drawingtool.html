@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Drawing tools</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #floating-pane4 {
+        position: absolute;
+        bottom: 0px;
+        right:186px;
+        left:200px;
+        z-index: 5;
+        background-color: grey;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+  <div id="floating-pane4" align="bottom">
+<form action="{% url 'area' %}" method="post">{% csrf_token %}
+           <input type="hidden"  id="token1" name="token1" value=" " />
+           <input type="submit" value="Submit" style="color:white;  text-shadow: 4px 4px 8px black; background-color:green " />
+           </form>
+  </div>
+    <div id="map"></div>
+    <script>
+      // This example requires the Drawing library. Include the libraries=drawing
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=drawing">
+	    var a = [];
+      	var pt = [];
+	    var pl = [];
+	    var pg = [];
+	    var fa = [];
+	    function initMap() {
+	   var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 16,
+          center: {lat:26, lng:78},
+        });
+
+
+	    var drawingManager = new google.maps.drawing.DrawingManager({
+			drawingMode: google.maps.drawing.OverlayType.MARKER,
+			drawingControl: true,
+			drawingControlOptions: {
+			position: google.maps.ControlPosition.RIGHT_TOP,
+			drawingModes: [
+			  google.maps.drawing.OverlayType.POLYGON,
+
+			]
+			},
+
+			polygonOptions: {
+			  editable: true
+			}
+	    });
+	    drawingManager.setMap(map);
+        google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event) {
+
+			if (event.type == google.maps.drawing.OverlayType.POLYGON) {
+			  pg.push(event.overlay);
+			  if (pg.length > 0) {
+				for (i = 0; i < pg.length; i++) {
+					var p = [];
+					for (j = 0; j < pg[i].getPath().getLength(); j++) {
+						p.push( [pg[i].getPath().getAt(j).lat(),  pg[i].getPath().getAt(j).lng()])
+					}
+				}
+
+			}
+			console.log(p);
+			document.getElementById('token1').value = p;
+			}
+		});
+
+}
+
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuCQItK2CtSoafNZkJduTGgsjGfGi2Fw4&libraries=drawing&callback=initMap"
+         async defer></script>
+  </body>
+</html>

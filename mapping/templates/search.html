@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <meta charset="utf-8">
+    <title>Places Searchbox</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 94%;
+        top:0px;
+        bottom:30px;
+        right:186px;
+        left:208px;
+        width:72%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+       .block {
+    display: block;
+    width: 100%;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.block:hover {
+    background-color: #ddd;
+    color: black;
+}
+      #description {
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+      }
+
+      #infowindow-content .title {
+        font-weight: bold;
+      }
+
+      #infowindow-content {
+        display: none;
+      }
+
+      #map #infowindow-content {
+        display: inline;
+      }
+
+      .pac-card {
+        margin: 10px 10px 0 0;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        background-color: #fff;
+        font-family: Roboto;
+      }
+
+      #pac-container {
+        padding-bottom: 12px;
+        margin-right: 12px;
+      }
+
+      .pac-controls {
+        display: inline-block;
+        padding: 5px 11px;
+      }
+
+      .pac-controls label {
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+      }
+
+      #pac-input {
+        background-color: #fff;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        margin-left: 12px;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 500px;
+        border: 5px solid #999;
+      }
+
+      #pac-input:focus {
+        border-color: #4d90fe;
+      }
+
+      #title {
+        color: #fff;
+        background-color: #4d90fe;
+        font-size: 25px;
+        font-weight: 500;
+        padding: 6px 12px;
+      }
+      #target {
+        width: 345px;
+      }
+      #floating-panel {
+        position: absolute;
+        bottom: 0px;
+        top:0px;
+        left: 0%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+        padding-right: 10px;
+         background-color:grey;
+      }
+      #floating-pane2 {
+        position: absolute;
+        top: 0px;
+        bottom:0px;
+        right:0%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+         padding-right: 10px;
+         background-color:grey;
+      }
+       #floating-pane3 {
+        position: absolute;
+        top: 10px;
+        right:186px;
+        left:186px;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+        padding-right: 10px;
+        background-color:grey;
+      }
+  #floating-pane4 {
+        position: absolute;
+        bottom: 0px;
+        right:186px;
+        left:200px;
+        z-index: 5;
+        background-color: grey;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+       #floating-pane5 {
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box" align="center">
+
+
+    <div id="floating-pane2" align="right" >
+        <form action="{% url 'pview' %}" method="post">{% csrf_token %}
+         <br>
+            <button style="color:white;  text-shadow: 4px 4px 8px black; background-color:green " type="button" class="btn btn-success" align="center">START POINT</button><br><br><br>
+            <label style="color:white; text-shadow: 4px 4px 8px green"><b>LATITUDE</b></label><br>
+<input type="number" step="0.0000000000000001" id="lats" name="lats" value="" placeholder="LATITUDE"/><br>
+
+           <input type="hidden"  id="token" name="token" value="{{to}}" />
+            <label style="color:white; text-shadow: 4px 4px 8px green"><b>LONGITUDE</b></label><br>
+      <input type="number" step="0.0000000000000001" id="lons" name="lons" value="" placeholder="LONGITUDE"/><br>
+            <input type="submit" value="Submit" style="color:white;  text-shadow: 4px 4px 8px black; background-color:green " /><br><br>
+       </form>
+        <label style="color:white; text-shadow: 4px 4px 8px green"><b>DISTANCE COVERED<br> (METERS)</b></label><br>
+         <input type="number"  value="{{tod}}" />
+        <form action="{% url 'clear' %}" method="post">{% csrf_token %}
+         <br>
+
+           <input type="hidden"  id="token6" name="token6" value="{{to}}" />
+
+  <input type="submit" value="START NEW SURVEY" style="color:white;  text-shadow: 4px 4px 8px black; background-color:green " /><br><br><br>
+       </form>
+
+
+
+    </div>
+<div id="floating-pane4" align="bottom">
+    <div class="w3-container" align="bottom" >
+  <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-green w3-large" >FINISH</button>
+
+  <div id="id01" class="w3-modal">
+    <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px; background-color:grey; " >
+
+      <div class="w3-center"><br>
+        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-xlarge w3-transparent w3-display-topright" title="Close Modal">×</span>
+        {%load static %}
+          <img src="{%static "111.png"%}" alt="Avatar" style="width:30%" class="w3-circle w3-margin-top">
+      </div>
+
+
+      <form class="w3-container" action="{% url 'lorp' %}" method="post">{% csrf_token %}
+        <div class="w3-section">
+
+          <label style="color:white; text-shadow: 4px 4px 8px green"><b>STATION INTERVAL IN LONGITUDNAL DIRECTION (METERS)</b></label>
+          <input class="w3-input w3-border w3-margin-bottom" type="text" id="ls" name="ls" value="nil" required/>
+            <label style="color:white; text-shadow: 4px 4px 8px green"><b>LIST OF OFFSET CHAINAGE (METERS)</b></label><br>
+                  <input class="w3-input w3-border w3-margin-bottom" type="text" id="ofchan" name="ofchan" value="nil" placeholder="ex. [20.34567,40.23456,120.23455565,............,2000.3433566]" /><br>
+            <label style="color:white; text-shadow: 4px 4px 8px green"><b>C/S CHAINAGE (METERS)</b></label><br>
+                  <input class="w3-input w3-border w3-margin-bottom" type="text" id="ofconchan" name="ofconchan" value="nil" placeholder="ex. [20.34567]" /><br>
+            <label style="color:white; text-shadow: 4px 4px 8px green"><b>LENGTH OF OFFSET (METERS)</b></label><br>
+                 <input class="w3-input w3-border w3-margin-bottom" type="text" id="oflen" name="oflen" value="nil" placeholder="ex. 10" required/><br>
+                 <label style="color:white; text-shadow: 4px 4px 8px green"><b>STATION INTERVAL ON OFFSET (METERS)</b></label><br>
+                 <input class="w3-input w3-border w3-margin-bottom" type="text" id="ofin" name="ofin" value="nil" placeholder="ex. 1" required/><br>
+
+          <input type="hidden"  id="token5" name="token5" value="{{to}}" />
+          <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">SUBMIT</button>
+
+        </div>
+      </form>
+
+      <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+        <button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-button w3-red" style="background-color:grey;">Cancel</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+
+
+    <div id="floating-panel" align="center">
+
+       <form action="{% url 'fview' %}" method="post">{% csrf_token %}
+        <br>
+            <button style="color:white;  text-shadow: 4px 4px 8px black; background-color:green " type="button" class="btn btn-success" align="center">NEXT POINT</button><br>
+            <label  style="color:white; text-shadow: 4px 4px 8px green"><b>LATITUDE</b></label><br>
+           <input type="number" step="0.0000000000000001" id="lat" name="lat" value="" placeholder="LATITUDE"/><br>
+           <input type="hidden"  id="token1" name="token1" value="{{to}}" />
+           <label  style="color:white; text-shadow: 4px 4px 8px green"><b>LONGITUDE</b></label><br>
+      <input type="number" step="0.0000000000000001" id="lon" name="lon" value="" placeholder="LONGITUDE"/><br>
+           <label  style="color:white; text-shadow: 4px 4px 8px green"><b>ANGLE</b></label><br>
+     <input type="number" step="0.0000000000000001" id="angle" name="angle" value="" placeholder="ANGLE"/><br>
+            <label  style="color:white; text-shadow: 4px 4px 8px green"><b>DISTANCE</b></label><br>
+     <input type="number" step="0.0000000000000001" id="distance" name="distance" value="" placeholder="DISTANCE"/><br>
+            <br>
+           <label style="color:white; text-shadow: 4px 4px 8px green"><b>TOTAL DISTANCE COVERED<br> (METERS)</b></label><br>
+            <input type="number" id="tdc" name="tdc" value="{{mod}}" />
+           <input type="submit" value="Submit" style="color:white;  text-shadow: 4px 4px 8px black; background-color:green " />
+
+
+           </form>
+
+   </div>
+
+
+    <div id="map"></div>
+    <script>
+      // This example adds a search box to a map, using the Google Place Autocomplete
+      // feature. People can enter geographical searches. The search box will return a
+      // pick list containing a mix of places and predicted search terms.
+
+      // This example requires the Places library. Include the libraries=places
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+
+
+      function initAutocomplete() {
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat:26, lng: 78},
+          zoom: 10,
+          mapTypeId: 'roadmap'
+        });
+
+        // Create the search box and link it to the UI element.
+        var input = document.getElementById('pac-input');
+        var searchBox = new google.maps.places.SearchBox(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+        // Bias the SearchBox results towards current map's viewport.
+        map.addListener('bounds_changed', function() {
+          searchBox.setBounds(map.getBounds());
+        });
+
+        var markers = [];
+        // Listen for the event fired when the user selects a prediction and retrieve
+        // more details for that place.
+        searchBox.addListener('places_changed', function() {
+          var places = searchBox.getPlaces();
+
+          if (places.length == 0) {
+            return;
+          }
+
+          // Clear out the old markers.
+          markers.forEach(function(marker) {
+            marker.setMap(null);
+          });
+          markers = [];
+
+          // For each place, get the icon, name and location.
+          var bounds = new google.maps.LatLngBounds();
+          places.forEach(function(place) {
+            if (!place.geometry) {
+              console.log("Returned place contains no geometry");
+              return;
+            }
+            var icon = {
+              url: place.icon,
+              size: new google.maps.Size(71, 71),
+              origin: new google.maps.Point(0, 0),
+              anchor: new google.maps.Point(17, 34),
+              scaledSize: new google.maps.Size(25, 25)
+            };
+
+            // Create a marker for each place.
+            markers.push(new google.maps.Marker({
+              map: map,
+              icon: icon,
+              title: place.name,
+              position: place.geometry.location
+            }));
+
+            if (place.geometry.viewport) {
+              // Only geocodes have viewport.
+              bounds.union(place.geometry.viewport);
+            } else {
+              bounds.extend(place.geometry.location);
+            }
+          });
+          map.fitBounds(bounds);
+        });
+
+        var infowindow = new google.maps.InfoWindow({map: map});
+        var distancewindow = new google.maps.InfoWindow({map: map});
+        var refwindow = new google.maps.InfoWindow({map: map});
+         var lon1;
+         var lat1;
+         var lon2;
+         var lat2;
+         var ele;
+         var le;
+         var li=[];
+
+        // Add a listener for the click event. Display the elevation for the LatLng of
+        // the click inside the infowindow.
+        if ({{l}} != null){
+        for (var k =0; k <{{l}}.length; k++){
+        var line={{l}}[k];
+        console.log({lat: line[0], lng: line[1]});
+        li.push ({lat: line[0], lng:line[1]});
+        var marker = new google.maps.Marker({
+        position:{lat: line[0], lng:line[1]},
+        title: 'LONDE AT SERVICE',
+        animation:google.maps.Animation.DROP,
+        map: map
+        });
+        google.maps.event.addListener (marker,'click', function(event) {
+        lat1=marker.getPosition().lat();
+        lon1=marker.getPosition().lng();
+        document.getElementById('lats').value = marker.getPosition().lat();
+          document.getElementById('lons').value = marker.getPosition().lng();
+        refwindow.setContent('START POINT');
+        refwindow.setPosition(event.latLng);
+        refwindow.open(map,marker);
+        });
+}
+ var flightPath = new google.maps.Polyline({
+          path: li,
+          geodesic: true,
+          strokeColor: '#FF0000',
+          strokeOpacity: 1.0,
+          strokeWeight: 2
+        });
+        flightPath.setMap(map);
+}
+
+
+        map.addListener('click', function(event) {
+        var marker = new google.maps.Marker({
+          position: event.latLng,
+          label: "V",
+          draggable: true,
+          title: 'VICTIMS EXACT LOCATION',
+          animation:google.maps.Animation.DROP,
+          map: map
+        });
+        google.maps.event.addListener (marker,'click', function(event) {
+        lat1=marker.getPosition().lat();
+        lon1=marker.getPosition().lng();
+        document.getElementById('lats').value = marker.getPosition().lat();
+        document.getElementById('lons').value = marker.getPosition().lng();
+        refwindow.setContent('START POINT');
+        refwindow.setPosition(event.latLng);
+        refwindow.open(map,marker);
+        });
+        google.maps.event.addListener (marker,'drag', function(event) {
+        lat2=marker.getPosition().lat();
+        lon2=marker.getPosition().lng();
+        console.log({lat:lat2,lng:lon2});
+        if (lat1 != null && lon1 != null){
+        haversine(lat1,lon1,lat2,lon2,distancewindow,event,marker,map,le);
+        };
+        document.getElementById('lat').value = marker.getPosition().lat();
+        document.getElementById('lon').value = marker.getPosition().lng();
+        });
+        });
+ if ({{north}} != null && {{south}} != null && {{east}} != null &&  {{west}} != null){
+ var bounds = {
+          north: {{north}},
+          south: {{south}},
+          east: {{east}},
+          west: {{west}}
+        };
+         map.fitBounds(bounds);
+}
+else{
+ var bounds = {
+          north: 26.23049119761041,
+          south: 26.175659888923647,
+          east: 78.24051156666417,
+          west: 78.123953491713
+        };
+         map.fitBounds(bounds);
+         }
+      }
+
+
+function haversine(lat1, lon1, lat2, lon2,distancewindow,event,marker,map,le) {
+    //Radius of the earth in:  1.609344 miles,  6371 km  | var R = (6371 / 1.609344);
+    var R = 6371; // Radius of earth in meters
+    var dLat = toRad(lat2-lat1);
+    var dLon = toRad(lon2-lon1);
+    var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *  Math.sin(dLon/2) * Math.sin(dLon/2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    var d = R * c*1000;
+
+
+var y = Math.sin(dLon) * Math.cos(toRad(lat2));
+var x = Math.cos(toRad(lat1))*Math.sin(toRad(lat2)) - Math.sin(toRad(lat1))*Math.cos(toRad(lat2))*Math.cos(dLon);
+var brng = toDegrees(Math.atan2(y, x));
+if ( brng<0){
+brng=(brng+360);}
+    //distancewindow.setContent( 'distance from reference point ' + d + ' meters.' + ' bearing is ' + brng +' degree' + ' elevation is ' + le + ' meters ');
+    //distancewindow.setPosition(event.latLng);
+    //distancewindow.open(map,marker);
+     document.getElementById('distance').value = d ;
+      document.getElementById('angle').value = brng;
+}
+
+function toRad(Value) {
+    /** Converts numeric degrees to radians */
+    return Value * Math.PI / 180;
+}
+function toDegrees(Value) {
+    /** Converts numeric degrees to radians */
+    return Value *  (180/Math.PI) ;
+}
+
+
+
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuCQItK2CtSoafNZkJduTGgsjGfGi2Fw4&libraries=places&callback=initAutocomplete"
+         async defer></script>
+  </body>
+</html>`11``

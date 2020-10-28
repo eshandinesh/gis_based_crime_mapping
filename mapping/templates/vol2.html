@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Data Layer: Styling</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+
+      var map;
+      var infowindow;
+      var marker;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 8,
+          center: {lat: 28, lng: 78}
+        });
+        var londelist=[];
+        if ({{londe}} != null){
+
+        for (var k =0; k <{{londe}}.length; k++){
+        var line={{londe}}[k];
+        var marker = new google.maps.Marker({
+        position:{lat: line[0], lng:line[1]},
+        title: 'LONDE AT SERVICE',
+        animation:google.maps.Animation.BOUNCE,
+        map: map
+        });
+        var setContent='<div id="content">'+
+      '<div id="siteNotice">'+
+      '</div>'+
+      '<div id="bodyContent">'+
+      '<p><b>volounteer</b></p>' +
+      '</div>'+
+      '</div>';
+ var infoWindow = new google.maps.InfoWindow({
+        content:setContent
+        });
+        infoWindow.setPosition({lat: line[0], lng:line[1]});
+        infoWindow.open(map,marker);
+
+        console.log({lat: line[0], lng: line[1]});
+        londelist.push ({lat: line[0], lng:line[1]});
+
+        }
+        }
+var polylist2=[];
+        for (var k =0; k <{{ki}}.length; k++){
+        var line={{ki}}[k];
+         for (var i =0; i <line.length; i++) {
+var pline=line[i];
+ for (var j =0; j <pline.length; j++){
+
+                  console.log({lat: pline[j][1], lng: pline[j][0]});
+                  polylist2.push ({lat: pline[j][1], lng:pline[j][0]});
+        }}}
+        var polypath2 = new google.maps.Polygon({
+         paths: polylist2,
+        strokeColor: '#FF0000',
+         strokeOpacity: 0.8,
+         strokeWeight: 5,
+         //fillColor: '#FF0000',
+         fillOpacity: 0
+        });
+        polypath2.setMap(map);
+        var bounds = {
+          north: {{north}},
+         south: {{south}},
+         east: {{east}},
+         west: {{west}}
+        };
+        map.fitBounds(bounds);
+}
+
+    </script>
+
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuCQItK2CtSoafNZkJduTGgsjGfGi2Fw4&callback=initMap">
+    </script>
+  </body>
+</html>
+
+
+
+

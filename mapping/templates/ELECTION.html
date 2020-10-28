@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Complex Polylines</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+
+      // This example creates an interactive map which constructs a polyline based on
+      // user clicks. Note that the polyline only appears once its path property
+      // contains two LatLng coordinates.
+
+      var poly;
+      var map;
+
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 7,
+          center: {lat: 41.879, lng: -87.624}  // Center the map on Chicago, USA.
+        });
+
+        function addruler() {
+
+    ruler1 = new google.maps.Marker({
+        position: map.getCenter() ,
+        map: map,
+        draggable: true
+    });
+
+    ruler2 = new google.maps.Marker({
+        position: map.getCenter() ,
+        map: map,
+        draggable: true
+    });
+
+    var ruler1label = new Label({ map: map });
+    var ruler2label = new Label({ map: map });
+    ruler1label.bindTo('position', ruler1, 'position');
+    ruler2label.bindTo('position', ruler2, 'position');
+
+    rulerpoly = new google.maps.Polyline({
+        path: [ruler1.position, ruler2.position] ,
+        strokeColor: "#FFFF00",
+        strokeOpacity: .7,
+        strokeWeight: 8
+    });
+    rulerpoly.setMap(map);
+
+    ruler1label.set('text',"0m");
+    ruler2label.set('text',"0m");
+
+    google.maps.event.addListener(ruler1, 'drag', function() {
+        rulerpoly.setPath([ruler1.getPosition(), ruler2.getPosition()]);
+        ruler1label.set('text',distance( ruler1.getPosition().lat(), ruler1.getPosition().lng(), ruler2.getPosition().lat(), ruler2.getPosition().lng()));
+        ruler2label.set('text',distance( ruler1.getPosition().lat(), ruler1.getPosition().lng(), ruler2.getPosition().lat(), ruler2.getPosition().lng()));
+    });
+
+    google.maps.event.addListener(ruler2, 'drag', function() {
+        rulerpoly.setPath([ruler1.getPosition(), ruler2.getPosition()]);
+        ruler1label.set('text',distance( ruler1.getPosition().lat(), ruler1.getPosition().lng(), ruler2.getPosition().lat(), ruler2.getPosition().lng()));
+        ruler2label.set('text',distance( ruler1.getPosition().lat(), ruler1.getPosition().lng(), ruler2.getPosition().lat(), ruler2.getPosition().lng()));
+    });
+
+}
+function distance(lat1,lon1,lat2,lon2) {
+    var R = 6371; // km (change this constant to get miles)
+    var dLat = (lat2-lat1) * Math.PI / 180;
+    var dLon = (lon2-lon1) * Math.PI / 180;
+    var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+        Math.cos(lat1 * Math.PI / 180 ) * Math.cos(lat2 * Math.PI / 180 ) *
+        Math.sin(dLon/2) * Math.sin(dLon/2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    var d = R * c;
+    if (d>1) return Math.round(d)+"km";
+    else if (d<=1) return Math.round(d*1000)+"m";
+    return d;
+}
+      }
+
+
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuCQItK2CtSoafNZkJduTGgsjGfGi2Fw4&callback=initMap">
+    </script>
+  </body>
+</html>

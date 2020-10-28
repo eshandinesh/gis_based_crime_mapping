@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Geolocation</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+   <table border ="0" width ="100%" bgcolor ="#D3D3D3" style="text-align:center">
+                   <tr>
+				   <td>
+				   <font size ="7" face = "Comic sans MS" color = "#4A148C" >PoliceGIS <br></font>
+				   </td>
+				   </tr>
+</table>
+
+<table border ="0" width ="100%" bgcolor ="#D3D3D3">
+    <tr>
+           <td>
+                  <font size ="3" face = "Comic sans MS">
+                       <a href ="Home.html" target = "_self">Home</a>
+                  </font>
+           </td>
+           <td>
+                   <font size ="3" face = "Comic sans MS" color = "#4A148C">
+                        <a href ="Features.html" target = "_self">Features</a>
+                    </font>
+           </td>
+           <td>
+                    <font size ="3" face = "Comic sans MS" color = "#4A148C">
+                         <a href ="{% url 'signin' %}">Sign in</a>
+                    </font>
+			</td>
+			<td>
+					<font size ="3" face = "Comic sans MS" color = "#4A148C">
+							<a href ="Register.html" target = "_self">Register</a>
+					</font>
+			</td>
+			<td>
+					<font size ="3" face = "Comic sans MS" color = "#4A148C">
+							<a href ="Contact_us.html" target = "_self">Contact Us</a>
+					</font>
+			</td>
+	</tr>
+</table>
+    <div id="map"></div>
+    <script>
+      // Note: This example requires that you consent to location sharing when
+      // prompted by your browser. If you see the error "The Geolocation service
+      // failed.", it means you probably did not give permission for the browser to
+      // locate you.
+      var map, infoWindow;
+      var marker;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 78.1952616252079  , lng:26.2115065092246},
+          zoom:15
+        });
+        infoWindow = new google.maps.InfoWindow;
+
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+        var optn={
+        enableHighAccuracy:true,
+        timeout: Infinity,
+        maximumAge:0
+        };
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+             document.getElementById('lat').value = position.coords.latitude;
+      document.getElementById('lon').value = position.coords.longitude;
+           if ( marker ) {
+    marker.setPosition(event.latLng);
+  } else {
+    marker = new google.maps.Marker({
+      position: {lat: position.coords.latitude, lng:position.coords.longitude},
+      title: 'YOUR EXACT LOCATION',
+          animation:google.maps.Animation.BOUNCE,
+          map: map
+    });
+  }
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('YOR APPROXIMATE LOCATION IS AS FOLLOWS');
+            infoWindow.open(map);
+            map.setCenter(pos);
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          },optn);
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+      }
+
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
+      }
+ function addLatLng(event) {
+
+
+        latitude=event.latLng.lat();
+        longitude=event.latLng.lng();
+
+console.log(event.latLng)
+
+
+      }
+      function selectOnlyThis(id) {
+    for (var i = 1;i <= 3; i++)
+    {
+        document.getElementById(i).checked = false;
+    }
+    document.getElementById(id).checked = true;
+}
+    </script>
+   <form action="{% url 'latlonview' %}" method="post">{% csrf_token %}
+      <input type="text" step="0.0000000000000001" id="lat" name="lat" value="" />
+      <input type="text" step="0.0000000000000001" id="lon" name="lon" value=""/>
+      <input type="checkbox" id="1" name="user" value="PROBLEM" onclick="selectOnlyThis(this.id)"/>I AM A PERSON IN PROBLEM
+       <input type="checkbox" id="2" name="helper" value="EMERGENCY"  onclick="selectOnlyThis(this.id)"/> I AM A PERSON HELPING CONCERNED PERSON IN EMERGENCY
+       <input type="checkbox" id="3" name="police" value="EMERGENCY"  onclick="selectOnlyThis(this.id)"/> I AM A EMERGENCY SERVICE PROVIDER
+       <input type="submit" value="Submit" onclick="addLatLng"/>
+         </form>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuCQItK2CtSoafNZkJduTGgsjGfGi2Fw4&callback=initMap">
+    </script>
+  </body>
+</html>

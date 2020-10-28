@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+
+      .bg-1 {
+      background-color:Orange; /* Green */
+      color: #ffffff;
+  }
+
+  </style>
+</head>
+<body style="background-color:#FF6D00;">
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{%url 'memberofparliament'%}">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="{%url 'memberofparliament'%}">HOME</a></li>
+
+        <li><a href="{%url 'lok'%}">MAP</a></li>
+        <li><a href="{%url 'tasktoall'%}">TASK TO ALL</a></li>
+          <li><a href="{%url 'home'%}">VIEW REPORT</a></li>
+           <li><a href="{%url 'home'%}">CONTACT US</a></li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <h2>Image</h2>
+  <p>The .img-responsive class makes the image scale nicely to the parent element (resize the browser window to see the effect):</p>
+  <img src="cinqueterre.jpg" class="img-responsive" alt="Cinque Terre" width="304" height="236">
+</div>
+
+
+</body>
+</html>

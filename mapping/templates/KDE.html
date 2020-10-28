@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Geolocation</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+<body>
+   <table border ="0" width ="100%" bgcolor ="#D3D3D3" style="text-align:center">
+                   <tr>
+				   <td>
+				   <font size ="7" face = "Comic sans MS" color = "#4A148C" >PoliceGIS <br></font>
+				   </td>
+				   </tr>
+</table>
+
+
+    <div id="map"></div>
+    <script>
+     // Note: This example requires that you consent to location sharing when
+      // prompted by your browser. If you see the error "The Geolocation service
+      // failed.", it means you probably did not give permission for the browser to
+      // locate you.
+      var map, infoWindow;
+      var marker;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat:26.20554286060711  , lng:78.19940686225893},
+          zoom:15
+        });
+
+
+
+ var policemarker = new google.maps.Marker({
+          position:{lat: {{pm}}, lng: {{pn}}},
+          label: "P",
+          title: 'MEAN',
+          animation:google.maps.Animation.DROP,
+          map: map
+        });
+var var_l=['#FA0505','#FAF605','#FA05FA','#052EFA','#23FA05','#D35400','#00FFFF','#000000','#922228','#70B4D0','#F9B594','#19564C','#F5562F'];
+var var_w = {{check}}[0]
+var  polypath1;
+        for (var k =0; k <{{path}}.length; k++){
+        var var_q = {{GI}}[k];
+
+        var line={{path}}[k];
+        var polylist1=[];
+         for (var i =0; i <line.length; i++) {
+         var pline=line[i];
+                  console.log({lat: pline[0], lng: pline[1]});
+                  polylist1.push ({lat: pline[0], lng:pline[1]});
+        }
+        console.log(var_l[{{check}}[k]]);
+         polypath1 = new google.maps.Polygon({
+         paths: polylist1,
+        strokeColor: '#FF0000',
+         strokeOpacity: 0.8,
+         strokeWeight:5 ,
+         fillColor:var_l[{{check}}[k]],
+
+
+
+          fillOpacity: 5
+        });
+        polypath1.setMap(map);
+}
+
+
+        var bounds = {
+          north: {{north}},
+          south: {{south}},
+          east: {{east}},
+          west: {{west}}
+        };
+
+         map.fitBounds(bounds);
+        };
+</script>
+ <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuCQItK2CtSoafNZkJduTGgsjGfGi2Fw4&callback=initMap">
+    </script>
+  </body>
+</html>
+

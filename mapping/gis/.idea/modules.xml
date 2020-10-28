@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$USER_HOME$/Downloads/QtTutorial/.idea/QtTutorial.iml" filepath="$USER_HOME$/Downloads/QtTutorial/.idea/QtTutorial.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/gis.iml" filepath="$PROJECT_DIR$/.idea/gis.iml" />
+      <module fileurl="file://C:/mapnik-sdk/python/2.7/site-packages/.idea/site-packages.iml" filepath="C:/mapnik-sdk/python/2.7/site-packages/.idea/site-packages.iml" />
+    </modules>
+  </component>
+</project>

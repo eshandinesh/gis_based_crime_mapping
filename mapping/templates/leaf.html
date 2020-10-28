@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{title}}</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 14,
+          center: {lat: 26 , lng: 78}
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: {{cm}}, lng: {{cn}}},
+          title: 'YOUR EXACT LOCATION',
+          animation:google.maps.Animation.DROP,
+          map: map
+        });
+       }
+
+var auto_refresh = setInterval(function() {
+submitform();
+}, 20000);
+// Form submit function
+function submitform() {
+if (validate()) // Calling validate function
+{
+document.getElementById("form").submit();
+}
+}
+// To validate form fields before submission
+function validate() {
+// Storing Field Values in variables
+var latitude = document.getElementById("lat").value;
+var longitude = document.getElementById("lon").value;
+// Regular Expression For Email
+// Conditions
+if (latitude != '' && longitude != '') {
+return true;
+} else {
+
+return false;
+}
+};
+
+    </script>
+    <form action="{% url 'newgenview' %}" method="post">{% csrf_token %}
+      <input type="text" step="0.0000000000000001" id="lat" name="lat" value="" />
+      <input type="text" step="0.0000000000000001" id="lon" name="lon" value=""/>
+     <input type="submit" value="Submit" onclick="addLatLng"/>
+         </form>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuCQItK2CtSoafNZkJduTGgsjGfGi2Fw4&callback=initMap">
+    </script>
+  </body>
+</html>

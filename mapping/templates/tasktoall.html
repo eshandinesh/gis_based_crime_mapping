@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>ELECTION MANAGEMENT SYSTEM</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker3.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js">
+
+    </script>
+  <style>
+
+      .bg-1 {
+      background-color:Orange; /* Green */
+      color: #ffffff;
+  }
+  .file {
+  visibility: hidden;
+  position: absolute;
+}
+
+  </style>
+</head>
+<body style="background-color:#FF6D00;">
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{%url 'home'%}">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="{%url 'home'%}">HOME</a></li>
+
+        <li><a href="{%url 'lok'%}">MAP</a></li>
+        <li><a href="{%url 'home'%}">TASK TO ALL</a></li>
+          <li><a href="{%url 'home'%}">VIEW REPORT</a></li>
+           <li><a href="{%url 'home'%}">CONTACT US</a></li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+
+
+
+
+<form action="{% url 'subtask' %}" method="post">
+    <div class="col-sm-12">
+    <div class="jumbotron" STYLE="height:150px; " align="center">
+        <p style="font-size: 30px; color:#FFFFFF;  text-shadow: 4px 4px 8px green;">TASK TO ALL</p>
+
+
+    </div></div>
+
+
+    <div class="form-group" align="center">
+           <div class="col-sm-6">
+       <div class="jumbotron" STYLE="height:150px; ">
+           <p align="center" style="font-size: 25px; color:#FFFFFF;  text-shadow: 4px 4px 8px green;">START DATE</p>
+           <div class='input-group input-append date' id='datetimepicker6'>
+                <input type='text' class="form-control" name="date" />
+                <span class="input-group-addon add-on">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+
+    </div>
+             </div>
+         <div class="col-sm-6">
+             <div class="jumbotron" STYLE="height:150px; ">
+           <p align="center" style="font-size: 25px; color:#FFFFFF;  text-shadow: 4px 4px 8px green;">END DATE</p>
+ <div class='input-group input-append date' id='datetimepicker7'>
+                <input type='text' class="form-control" name="date" />
+                <span class="input-group-addon add-on">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+    </div>
+              </div>
+
+   <div class="col-sm-12">
+    <div class="jumbotron" STYLE="height:330px; ">
+        <p style="font-size: 25px; color:#FFFFFF;  text-shadow: 4px 4px 8px green;">TASK DESCRIPTION</p>
+        <TEXTAREA rows="10" cols="140" id="desc">Type your task here</TEXTAREA>
+    </div></div>
+
+
+     <input type="file" name="img[]" class="file" id="file">
+    <div class="input-group col-xs-12">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
+      <input type="text" class="form-control input-lg" disabled placeholder="Upload File">
+      <span class="input-group-btn">
+        <button class="browse btn btn-primary input-lg" type="button"><i class="glyphicon glyphicon-search"></i> Browse</button>
+      </span>
+    </div>
+      <div><br>
+            <input type="submit" class="btn btn-success" name=" SUBMIT" style="width:300px; height:60px;font-size: 25px;">
+        </div>
+        </div>
+</form>
+
+<script type="text/javascript">
+$(document).ready(function () {
+        $('#datetimepicker6').datepicker(
+        {
+        format: 'mm/dd/yyyy',
+        startDate: '01/01/2010',
+        endDate: '01/01/2100',
+        });
+        $('#datetimepicker7').datepicker(
+        {
+        format: 'mm/dd/yyyy',
+        startDate: '01/01/2010',
+        endDate: '01/01/2100',
+        });
+    });
+</script>
+<script>
+    $(document).on('click', '.browse', function(){
+  var file = $(this).parent().parent().parent().find('.file');
+  file.trigger('click');
+});
+$(document).on('change', '.file', function(){
+  $(this).parent().find('.form-control').val($(this).val().replace(/C:\\fakepath\\/i, ''));
+});
+</script>
+</body>
+</html>

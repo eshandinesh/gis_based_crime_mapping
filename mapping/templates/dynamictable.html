@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>ELECTION MANAGEMENT SYSTEM</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+
+      .bg-1 {
+      background-color:Orange; /* Green */
+      color: #ffffff;
+  }
+#floating-pane5 {
+        position: absolute;
+        top: 0px;
+        width:100%;
+        z-index: 5;
+        background-color:black;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 20px;
+        padding-left: 10px;
+      }
+      #sga{
+        position: absolute;
+        top: 300px;
+        width:100%;
+        z-index: 5;
+        background-color: grey;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 20px;
+        padding-left: 10px;
+      }
+  </style>
+</head>
+<body style="background-color:#FF6D00;">
+<div >
+    <form class="w3-container" action="{% url 'staview'%}" method="post" id="myform">{% csrf_token %}
+            <input type="hidden" name="rnum" id="rnum" value=" "/>
+        <input type="hidden" name="snum" id="snum" value={{sender}} />
+         </form>
+</div>
+
+<div id="floating-pane5" align="top">
+<form class="w3-container" action="{% url 'newtask'%}" method="post" >{% csrf_token %}
+        <input type="hidden" name="snum1" id="snum1" value={{sender}} />
+    <input type="submit" value="SET NEW TASK" style="background-color:black; color:white;  text-shadow: 16px 16px 32px green; width=40px;padding: 15px 74px; font-size: 36px;" />
+         </form>
+    </div><br><br><br><br><br><br>
+<div class="container-fluid">
+     <div class="table-responsive">
+       <div class="col-sm-12 text-center"  style="background-color:#FF6D00;">
+         <h1 style="color:#FFFFFF; text-shadow: 4px 4px 8px green;">VOLUNTEER TASK STATUS</h1><br>
+       </div>
+  <table class="table table-bordered" style=" text-shadow: 4px 4px 8px green;">
+    <thead>
+      <tr style="background-color:#1B5E20; ">
+        <th class="text-center" style="color:#FFFFFF; font-size: 20px; text-shadow: 4px 4px 8px #000000; ">S.No.</th>
+        <th class="text-center" style="color:#FFFFFF; font-size: 20px; text-shadow: 4px 4px 8px #000000;">NAME OF VOLUNTEER</th>
+        <th class="text-center" style="color:#FFFFFF; font-size: 20px; text-shadow: 4px 4px 8px #000000; ">STATUS OF TASK</th>
+      </tr>
+    </thead>
+      <tbody id="tbo">
+
+      </tbody>
+  </table>
+     </div>
+</div>
+<script>
+var tbod=document.getElementById("tbo");
+for (var k =0; k <{{len}}; k++){
+    var tr = document.createElement('tr');
+    tr.style.backgroundColor = "#F0F4C3";
+    var td1 = document.createElement('td');
+    td1.align="center";
+    td1.style.color="black";
+    td1.style.textShadow="4px 4px 8px green";
+
+
+    var td2 = document.createElement('td');
+    td2.align="center";
+    td2.style.color="black";
+    td2.style.textShadow="4px 4px 8px green";
+
+
+   // var td3 = document.createElement('td');
+    //td3.align="center";
+    //td3.style.color="black";
+   // td3.style.textShadow="4px 4px 8px green";
+
+
+    var td4 = document.createElement('td');
+    td4.align="center";
+    td4.style.color="black";
+    td4.style.textShadow="4px 4px 8px green";
+    var btn = document.createElement("BUTTON");
+    btn.setAttribute("id", k);
+    btn.setAttribute("onclick", "myFunction(this.id)");
+
+    btn.innerHTML= "Status";
+    btn.style.color="white";
+    btn.setAttribute("class", "btn btn-success");
+    btn.style.textShadow="4px 4px 8px black";
+
+    td4.appendChild(btn);
+    var text1 = document.createTextNode(k+1);
+    var text2;
+    if ({{numlist}}[k] == '910321654987'){
+    var text2 = document.createTextNode('ABHISHEK');
+    }
+    if ({{numlist}}[k] == '910147852369'){
+    var text2 = document.createTextNode('RABEESH');
+    }
+    if ({{numlist}}[k] == '910236598741'){
+    var text2 = document.createTextNode('CHOTE');
+    }
+    if ({{numlist}}[k] == '910231654789'){
+    var text2 = document.createTextNode('BADE');
+    }
+
+
+    //var text3 = document.createTextNode('TEHSIL');
+
+
+    td1.appendChild(text1);
+    td2.appendChild(text2);
+    //td3.appendChild(text3);
+    tr.appendChild(td1);
+    tr.appendChild(td2);
+    //tr.appendChild(td3);
+    tr.appendChild(td4);
+
+    tbod.appendChild(tr);
+}
+
+function myFunction(a) {
+document.getElementById("rnum").value={{numlist}}[a];
+document.getElementById("myform").submit();
+}
+
+
+</script>
+</body>
+</html>

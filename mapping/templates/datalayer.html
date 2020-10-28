@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Data Layer: Styling</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+
+      var map;
+      var infowindow;
+      var marker;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: {lat: 28, lng: 78}
+        });
+        var polylist=[];
+        for (var k =0; k <{{ji}}.length; k++){
+        var line={{ji}}[k];
+         for (var i =0; i <line.length; i++) {
+         var pline=line[i];
+         for (var j =0; j <pline.length; j++){
+                  console.log({lat: pline[j][1], lng: pline[j][0]});
+                  polylist.push ({lat: pline[j][1], lng:pline[j][0]});
+        }}}
+        var polypath = new google.maps.Polygon({
+         paths: polylist,
+        strokeColor: '#FF0000',
+         strokeOpacity: 0.8,
+         strokeWeight: 2,
+         fillColor: '#FF0000',
+         fillOpacity: 0.35
+        });
+        polypath.setMap(map);
+        google.maps.event.addListener(polypath, 'click', function(evt) {
+
+        window.location = "http://www.google.com/";
+      });
+
+
+ for (var k =0; k <{{coord}}.length; k++){
+        var list=[];
+        var line={{coord}}[k];
+         for (var i =0; i <line.length; i++) {
+                  console.log({lat: line[i][1], lng: line[i][0]});
+                  list.push ({lat: line[i][1], lng:line[i][0]});
+        }
+        var path = new google.maps.Polyline({
+          path:list,
+          geodesic: true,
+          strokeColor: '#000000',
+          strokeOpacity: 1.0,
+          strokeWeight: 3,
+        });
+        path.setMap(map);
+        google.maps.event.addListener(path, 'click', function(evt) {
+
+        window.location = "http://www.google.com/";
+      });
+        }
+        var bounds = {
+          north: {{north}},
+          south: {{south}},
+          east: {{east}},
+          west: {{west}}
+        };
+         map.fitBounds(bounds);
+            map.addListener('click', addLatLng);
+          function addLatLng(event) {
+
+
+        latitude=event.latLng.lat();
+        longitude=event.latLng.lng();
+   document.getElementById('lat').value = latitude;
+      document.getElementById('lon').value = longitude;
+console.log(event.latLng)
+        if ( marker ) {
+    marker.setPosition(event.latLng);
+  } else {
+    marker = new google.maps.Marker({
+      position: event.latLng,
+      title: 'YOUR EXACT LOCATION',
+          animation:google.maps.Animation.BOUNCE,
+          map: map
+    });
+  }
+
+
+        }
+
+
+}
+
+    </script>
+
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuCQItK2CtSoafNZkJduTGgsjGfGi2Fw4&callback=initMap">
+    </script>
+  </body>
+</html>

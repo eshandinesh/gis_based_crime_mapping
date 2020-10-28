@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>ELECTION MANAGEMENT SYSTEM</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+  .buttons {
+        width: 100%;
+        height: 100px;
+
+}
+
+.buttons > .btn1 {
+                font-family: arial;
+                text-transformation: uppercase;
+                font-size: 30px;
+                width: 250;
+                height: 60px;
+                border-radius: 60px;
+                line-height: 60px;
+                text-align: center;
+                border: 3px solid green;
+                text-decoration: none;
+                display: block;
+                margin: 100px 300px
+}
+
+.buttons > .btn2 {
+                font-family: arial;
+                text-transformation: uppercase;
+                font-size: 30px;
+                width: 250;
+                height: 60px;
+                border-radius: 60px;
+                line-height: 60px;
+                text-align: center;
+                border: 3px solid green;
+                text-decoration: none;
+                display: block;
+                margin: 100px 300px
+}
+.buttons > .btn1 > .b1 {
+                        text-decoration: none;
+                        color: #FFFFFF
+}
+
+.buttons > .btn2 > .b2 {
+                        text-decoration: none;
+                        color: #FFFFFF
+}
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+
+  .carousel-inner img {
+      width: 100%; /* Set width to 100% */
+      margin: auto;
+      min-height:200px;
+  }
+
+  /* Hide the carousel text when the screen is less than 600 pixels wide */
+  @media (max-width: 600px) {
+    .carousel-caption {
+      display: none;
+    }
+  }
+  </style>
+</head>
+<body style="background-color:#FF6D00;">
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{%url 'home'%}" style="color: white; text-shadow: 4px 4px 8px #BDBDBD;">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="{%url 'home'%}" style="color: white; text-shadow: 4px 4px 8px #BDBDBD;">HOME</a></li>
+
+        <li><a href="{%url 'lok'%}" style="color: white; text-shadow: 4px 4px 8px #BDBDBD;">MAP</a></li>
+        <li><a href="{%url 'tasktoall'%}" style="color: white; text-shadow: 4px 4px 8px #BDBDBD;">TASK TO ALL</a></li>
+          <li><a href="{%url 'home'%}" style="color: white; text-shadow: 4px 4px 8px #BDBDBD;">VIEW REPORT</a></li>
+           <li><a href="{%url 'home'%}" style="color: white; text-shadow: 4px 4px 8px #BDBDBD;">CONTACT US</a></li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel" style="width:100%; height:500px;">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+         <li data-target="#myCarousel" data-slide-to="2"></li>
+         <li data-target="#myCarousel" data-slide-to="3"></li>
+         <li data-target="#myCarousel" data-slide-to="4"></li>
+         <li data-target="#myCarousel" data-slide-to="5"></li>
+         <li data-target="#myCarousel" data-slide-to="6"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox" >
+
+
+      <div class="item active" style="width:100%; height:500px;">
+             {%load static %}
+        <img style="width:100%; height:450px;" src="{%static "1.jpg"%}" alt="Image" s>
+        <div class="carousel-caption">
+          <h3></h3>
+          <p></p>
+        </div>
+      </div>
+         <div class="item" style="width:100%; height:500px;">
+             {%load static %}
+        <img style="width:100%; height:450px;" src="{%static "2.jpg"%}" alt="Image">
+        <div class="carousel-caption">
+          <h3></h3>
+          <p></p>
+        </div>
+      </div>
+         <div class="item" style="width:100%; height:500px;">
+             {%load static %}
+        <img style="width:100%; height:450px;" src="{%static "3.jpg"%}" alt="Image">
+        <div class="carousel-caption">
+          <h3></h3>
+          <p></p>
+        </div>
+      </div>
+         <div class="item" style="width:100%; height:500px;">
+             {%load static %}
+        <img style="width:100%; height:450px;" src="{%static "4.jpg"%}" alt="Image">
+        <div class="carousel-caption">
+          <h3></h3>
+          <p></p>
+        </div>
+      </div>
+         <div class="item" style="width:100%; height:500px;">
+             {%load static %}
+        <img style="width:100%; height:450px;" src="{%static "5.jpg"%}" alt="Image">
+        <div class="carousel-caption">
+          <h3></h3>
+          <p></p>
+        </div>
+      </div>
+         <div class="item" style="width:100%; height:500px;">
+             {%load static %}
+        <img style="width:100%; height:450px;" src="{%static "6.jpg"%}" alt="Image">
+        <div class="carousel-caption">
+          <h3></h3>
+          <p></p>
+        </div>
+      </div>
+         <div class="item" style="width:100%; height:500px;">
+             {%load static %}
+        <img style="width:100%; height:450px;" src="{%static "7.jpg"%}" alt="Image">
+        <div class="carousel-caption">
+          <h3></h3>
+          <p></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+</div>
+<div class="container-fluid text-center" >
+
+ <ul class="buttons">
+
+            <div class="btn1">
+                <a href="{%url 'memberofparliament' %}" class="b1" style="color: white; text-shadow: 4px 4px 8px green;">Public Representatives</a>
+            </div>
+            <div class="btn2">
+                <a href="{%url 'partyofficebearer' %}" class="b2" style="color: white; text-shadow: 4px 4px 8px green;">Party Office Bearer</a>
+            </div>
+        </ul>
+  </div>
+</body>
+</html>

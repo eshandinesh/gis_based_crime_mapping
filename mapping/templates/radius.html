@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Elevation service</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body oncontextmenu="return false">
+    <div id="map"></div>
+    <script>
+
+
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 14,
+          center: {lat:26, lng:78},  // Denali.
+          mapTypeId: 'terrain'
+        });
+        var elevator = new google.maps.ElevationService;
+        var infowindow = new google.maps.InfoWindow({map: map});
+        var distancewindow = new google.maps.InfoWindow({map: map});
+        var refwindow = new google.maps.InfoWindow({map: map});
+         var lon1;
+         var lat1;
+         var lon2;
+         var lat2;
+         var ele;
+         var li=[];
+
+        // Add a listener for the click event. Display the elevation for the LatLng of
+        // the click inside the infowindow.
+
+        map.addListener('click', function(event) {
+        var marker = new google.maps.Marker({
+          position: event.latLng,
+          label: "V",
+          draggable: true,
+          title: 'VICTIMS EXACT LOCATION',
+          animation:google.maps.Animation.DROP,
+          map: map
+        });
+
+        google.maps.event.addListener (marker,'click', function(event) {
+        lat1=marker.getPosition().lat();
+        lon1=marker.getPosition().lng();
+        elevator.getElevationForLocations({
+          'locations': [event.latLng]
+        }, function(results, status) {
+        ele=results[0].elevation;
+           console.log(results[0].elevation);
+           });
+        refwindow.setContent('refrence point');
+        refwindow.setPosition(event.latLng);
+        refwindow.open(map,marker);
+        });
+        google.maps.event.addListener (marker,'drag', function(event) {
+        lat2=marker.getPosition().lat();
+        lon2=marker.getPosition().lng();
+        console.log({lat:lat2,lng:lon2});
+        if (lat1 != null && lon1 != null){
+        haversine(lat1,lon1,lat2,lon2,distancewindow,event,marker,map);
+        };
+        });
+        if (lat1 != null && lon1 != null && lat2 != null && lon2 != null){
+         var flightPlanCoordinates = [
+          {lat: lat1, lng:lon1},
+          {lat: lat2, lng: lon2}
+        ];
+        var flightPath = new google.maps.Polyline({
+          path: flightPlanCoordinates,
+          geodesic: true,
+          strokeColor: '#FF0000',
+          strokeOpacity: 1.0,
+          strokeWeight: 2
+        });
+
+        flightPath.setMap(map);
+        }
+        });
+
+      }
+
+
+function haversine(lat1, lon1, lat2, lon2,distancewindow,event,marker,map) {
+    //Radius of the earth in:  1.609344 miles,  6371 km  | var R = (6371 / 1.609344);
+    var R = 6371; // Radius of earth in meters
+    var dLat = toRad(lat2-lat1);
+    var dLon = toRad(lon2-lon1);
+    var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *  Math.sin(dLon/2) * Math.sin(dLon/2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    var d = R * c*1000;
+
+
+var y = Math.sin(dLon) * Math.cos(toRad(lat2));
+var x = Math.cos(toRad(lat1))*Math.sin(toRad(lat2)) - Math.sin(toRad(lat1))*Math.cos(toRad(lat2))*Math.cos(dLon);
+var brng = toDegrees(Math.atan2(y, x));
+if ( brng<0){
+brng=(brng+360);}
+    distancewindow.setContent( d + ' meters.' + ' bearing is ' + brng +' degree');
+    distancewindow.setPosition(event.latLng);
+    distancewindow.open(map,marker);
+}
+
+function toRad(Value) {
+    /** Converts numeric degrees to radians */
+    return Value * Math.PI / 180;
+}
+function toDegrees(Value) {
+    /** Converts numeric degrees to radians */
+    return Value *  (180/Math.PI) ;
+}
+
+
+
+
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuCQItK2CtSoafNZkJduTGgsjGfGi2Fw4&callback=initMap">
+    </script>
+  </body>
+</html>

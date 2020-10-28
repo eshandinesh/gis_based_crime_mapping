@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>ELECTION MANAGEMENT SYSTEM</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker3.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js">
+
+    </script>
+  <style>
+
+      .bg-1 {
+      background-color:Orange; /* Green */
+      color: #ffffff;
+  }
+  .file {
+  visibility: hidden;
+  position: absolute;
+}
+
+  </style>
+</head>
+<body style="background-color:#FF6D00;">
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{%url 'home'%}" style="color: white; text-shadow: 4px 4px 8px #BDBDBD;">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="{%url 'home'%}" style="color: white; text-shadow: 4px 4px 8px #BDBDBD;">HOME</a></li>
+        <li><a href="{%url 'lok'%}" style="color: white; text-shadow: 4px 4px 8px #BDBDBD;">MAP</a></li>
+        <li><a href="{%url 'home'%}" style="color: white; text-shadow: 4px 4px 8px #BDBDBD;">TASK TO ALL</a></li>
+          <li><a href="{%url 'home'%}" style="color: white; text-shadow: 4px 4px 8px #BDBDBD;">VIEW REPORT</a></li>
+           <li><a href="{%url 'home'%}" style="color: white; text-shadow: 4px 4px 8px #BDBDBD;">CONTACT US</a></li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+    <div class="col-sm-12" align="center">
+    <div class="jumbotron" STYLE="height:150px; " align="center">
+        <p style="font-size: 30px; color:#FFFFFF;  text-shadow: 4px 4px 8px green;">NAME</p>
+        <p style="color:#FFFFFF;  text-shadow: 4px 4px 8px green;">{{rname}}</p>
+
+    </div></div>
+
+<form action="{% url 'subtask' %}" method="post" id="usrform" enctype="multipart/form-data"> {% csrf_token %}
+    <input type="hidden" name="name" id="name" value={{sname}}>
+    <input type="hidden" name="num" id="num" value={{rnumber}}>
+    <div class="col-sm-6" align="center">
+       <div class="jumbotron" STYLE="height:150px; ">
+           <p align="center" style="font-size: 25px;color:#FFFFFF;  text-shadow: 4px 4px 8px green;" >START DATE</p>
+           <div align="center"><input type="date" name="sdate" id="sdate" value=" "/></div>
+       </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="jumbotron" STYLE="height:150px; ">
+           <p align="center" style="font-size: 25px;color:#FFFFFF;  text-shadow: 4px 4px 8px green;">END DATE</p>
+            <div align="center"><input type="date" name="edate" id="edate" value=" "/></div>
+
+        </div>
+    </div>
+   <div class="col-sm-12" align="center">
+        <div class="jumbotron" STYLE="height:330px; ">
+            <p style="font-size: 25px; color:#FFFFFF;  text-shadow: 4px 4px 8px green;">TASK DESCRIPTION</p>
+            <textarea rows="10" cols="140" name="desc" id="desc" >Enter text here...</textarea>
+        </div>
+   </div>
+
+
+
+    <div class="input-group col-xs-12">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
+        <input type="file" name="taskFile" class="file" id="file"/>
+      <input type="text" class="form-control input-lg" disabled placeholder="Upload File">
+      <span class="input-group-btn">
+        <button class="browse btn btn-primary input-lg" type="button"><i class="glyphicon glyphicon-search"></i> Browse</button>
+      </span>
+    </div>
+      <div align="center"><br>
+            <input type="submit" class="btn btn-success" name=" SUBMIT" style="width:300px; height:60px;font-size: 25px;">
+        </div>
+
+</form>
+</div>
+<script>
+    $(document).on('click', '.browse', function(){
+  var file = $(this).parent().parent().parent().find('.file');
+  file.trigger('click');
+});
+$(document).on('change', '.file', function(){
+  $(this).parent().find('.form-control').val($(this).val().replace(/C:\\fakepath\\/i, ''));
+});
+</script>
+</body>
+</html>

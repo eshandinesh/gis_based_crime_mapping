@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Data Layer: Styling</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+
+      var map;
+      var infowindow;
+      var marker;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 8,
+          center: {lat: 28, lng: 78}
+        });
+        var polylist1=[];
+        for (var k =0; k <{{ji}}.length; k++){
+        var line={{ji}}[k];
+         for (var i =0; i <line.length; i++) {
+         var pline=line[i];
+         for (var j =0; j <pline.length; j++){
+                  console.log({lat: pline[j][1], lng: pline[j][0]});
+                  polylist1.push ({lat: pline[j][1], lng:pline[j][0]});
+        }}}
+        var polypath1 = new google.maps.Polygon({
+         paths: polylist1,
+        strokeColor: '#FF0000',
+         strokeOpacity: 0.8,
+         strokeWeight:5,
+        // fillColor: '#FF0000',
+         fillOpacity: 0
+        });
+        polypath1.setMap(map);
+        google.maps.event.addListener(polypath1, 'click', function(evt) {
+
+        window.location = "http://127.0.0.1:8000/vidhan";
+      });
+
+       var bounds = {
+          north: {{north}},
+         south: {{south}},
+         east:{{east}},
+         west: {{west}}
+        };
+        map.fitBounds(bounds);
+
+}
+
+    </script>
+
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuCQItK2CtSoafNZkJduTGgsjGfGi2Fw4&callback=initMap">
+    </script>
+  </body>
+</html>

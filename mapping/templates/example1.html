@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{title}}</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+
+
+      var map;
+
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 14,
+          center: {lat: 26 , lng: 78}
+        });
+        map.addListener('click', addLatLng);
+        var lineSymbol = {
+          path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
+        };
+        for (var k =0; k <{{coord}}.length; k++){
+        var list=[];
+        var line={{coord}}[k];
+         for (var i =0; i <line.length; i++) {
+                  console.log({lat: line[i][1], lng: line[i][0]});
+                  list.push ({lat: line[i][1], lng:line[i][0]});
+        }
+        var flightPath = new google.maps.Polyline({
+          path:list,
+          geodesic: true,
+          strokeColor: '#FF0000',
+          strokeOpacity: 1.0,
+          strokeWeight: 2,
+        });
+        flightPath.setMap(map);
+        }
+        for (var k =0; k <{{londeras}}.length; k++){
+        var list=[];
+        var line={{londeras}}[k];
+         for (var i =0; i <line.length; i++) {
+                  console.log({lat: line[i][1], lng: line[i][0]});
+                  list.push ({lat: line[i][1], lng:line[i][0]});
+        }
+        var path = new google.maps.Polyline({
+          path:list,
+          geodesic: true,
+          strokeColor: '#000000',
+          strokeOpacity: 1.0,
+          strokeWeight: 3,
+        });
+        path.setMap(map);
+        }
+        var londelist=[];
+        for (var k =0; k <{{londe}}.length; k++){
+        var line={{londe}}[k];
+        console.log({lat: line[0], lng: line[1]});
+        londelist.push ({lat: line[0], lng:line[1]});
+        var marker = new google.maps.Marker({
+        position:{lat: line[0], lng:line[1]},
+        title: 'LONDE AT SERVICE',
+        animation:google.maps.Animation.BOUNCE,
+        map: map
+        });
+        }
+
+        var marker = new google.maps.Marker({
+          position:{lat: {{pm}}, lng: {{pn}}},
+          title: 'NEAREST SERVICE PROVIDER',
+          animation:google.maps.Animation.DROP,
+          map: map
+        });
+
+        var marker = new google.maps.Marker({
+          position: {lat: {{cm}}, lng: {{cn}}},
+          title: 'YOUR EXACT LOCATION',
+          animation:google.maps.Animation.DROP,
+          map: map
+        });
+
+         var bounds = {
+          north: {{north}},
+          south: {{south}},
+          east: {{east}},
+          west: {{west}}
+        };
+         map.fitBounds(bounds);
+         var agarker;
+
+      function addLatLng(event) {
+
+        latitude=event.latLng.lat();
+        longitude=event.latLng.lng();
+   document.getElementById('lat').value = latitude;
+      document.getElementById('lon').value = longitude;
+console.log(event.latLng)
+        if ( agarker ) {
+    agarker.setPosition(event.latLng);
+  } else {
+    agarker = new google.maps.Marker({
+      position: event.latLng,
+      title: 'YOUR EXACT LOCATION',
+          animation:google.maps.Animation.BOUNCE,
+          map: map
+    });
+  }
+
+      }
+       }
+function selectOnlyThis(id) {
+    for (var i = 1;i <= 3; i++)
+    {
+        document.getElementById(i).checked = false;
+    }
+    document.getElementById(id).checked = true;
+}
+
+
+    </script>
+    <form action="{% url 'latlonview' %}" method="post">{% csrf_token %}
+      <input type="text" step="0.0000000000000001" id="lat" name="lat" value="" />
+      <input type="text" step="0.0000000000000001" id="lon" name="lon" value=""/>
+      <input type="checkbox" id="1" name="user" value="PROBLEM" onclick="selectOnlyThis(this.id)"/>I AM A PERSON IN PROBLEM
+       <input type="checkbox" id="2" name="helper" value="EMERGENCY"  onclick="selectOnlyThis(this.id)"/> I AM A PERSON HELPING CONCERNED PERSON IN EMERGENCY
+      <input type="checkbox" id="3" name="police" value="SERVICE"  onclick="selectOnlyThis(this.id)"/> I AM A EMERGENCY SERVICE PROVIDER
+      <input type="submit" value="Submit" onclick="addLatLng"/>
+         </form>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuCQItK2CtSoafNZkJduTGgsjGfGi2Fw4&callback=initMap">
+    </script>
+  </body>
+</html>

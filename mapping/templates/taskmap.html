@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Data Layer: Styling</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker3.min.css">
+       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 80%;
+        top:0px;
+        bottom:3px;
+        right:170px;
+        left:239px;
+        width:68%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+       .block {
+    display: block;
+    width: 100%;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.block:hover {
+    background-color: #ddd;
+    color: black;
+}
+      #description {
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+      }
+
+      #infowindow-content .title {
+        font-weight: bold;
+      }
+
+      #infowindow-content {
+        display: none;
+      }
+
+      #map #infowindow-content {
+        display: inline;
+      }
+
+      .pac-card {
+        margin: 10px 10px 0 0;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        background-color: #fff;
+        font-family: Roboto;
+      }
+
+      #pac-container {
+        padding-bottom: 12px;
+        margin-right: 12px;
+      }
+
+      .pac-controls {
+        display: inline-block;
+        padding: 5px 11px;
+      }
+
+      .pac-controls label {
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+      }
+
+      #pac-input {
+        background-color: #fff;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        margin-left: 12px;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 500px;
+        border: 5px solid #999;
+      }
+
+      #pac-input:focus {
+        border-color: #4d90fe;
+      }
+
+      #title {
+        color: #fff;
+        background-color: #4d90fe;
+        font-size: 25px;
+        font-weight: 500;
+        padding: 6px 12px;
+      }
+      #target {
+        width: 345px;
+      }
+      #floating-panel {
+        position: absolute;
+        bottom: 0px;
+        top:0px;
+        left: 0%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+        padding-right: 10px;
+         background-color:grey;
+      }
+      #floating-pane2 {
+        position: absolute;
+        top: 0px;
+        bottom:0px;
+        right:0%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+         padding-right: 10px;
+         background-color:grey;
+      }
+       #floating-pane3 {
+        position: absolute;
+        top: 10px;
+        right:186px;
+        left:186px;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+        padding-right: 10px;
+        background-color:grey;
+      }
+  #floating-pane4 {
+        position: absolute;
+        bottom: 0px;
+        width:100%;
+        z-index: 5;
+        background-color: grey;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 20px;
+        padding-left: 10px;
+      }
+       #floating-pane5 {
+        position: absolute;
+        top: 0px;
+        right:186px;
+        left:252px;
+        z-index: 5;
+        background-color: grey;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 20px;
+        padding-left: 10px;
+      }
+            .bg-1 {
+      background-color:Orange; /* Green */
+      color: #ffffff;
+  }
+  .file {
+  visibility: hidden;
+  position: absolute;
+}
+    </style>
+  </head>
+  <body style="background-color:grey;">
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{%url 'home'%}" style="color: white; text-shadow: 4px 4px 8px #BDBDBD;">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="{%url 'home'%}" style="color: white; text-shadow: 4px 4px 8px #BDBDBD;">HOME</a></li>
+
+        <li><a href="{%url 'lok'%}" style="color: white; text-shadow: 4px 4px 8px #BDBDBD;">MAP</a></li>
+        <li><a href="{%url 'home'%}" style="color: white; text-shadow: 4px 4px 8px #BDBDBD;">TASK TO ALL</a></li>
+          <li><a href="{%url 'home'%}" style="color: white; text-shadow: 4px 4px 8px #BDBDBD;">VIEW REPORT</a></li>
+           <li><a href="{%url 'home'%}" style="color: white; text-shadow: 4px 4px 8px #BDBDBD;">CONTACT US</a></li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+<form action="{% url 'subtask' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
+     <input type="hidden" name="name" id="name" value={{sname}}>
+    <input type="hidden" name="num" id="num" value={{rnumber}}>
+    <div id="floating-pane5" align="top">
+<p style="font-size: 30px; color:#FFFFFF;  text-shadow: 4px 4px 8px green;">NAME</p>
+        <p style="color:#FFFFFF;  text-shadow: 4px 4px 8px green;">{{rname}}</p>
+
+    </div>
+<div id="floating-pane2" align="right" >
+    <p style="font-size: 30px; color:#FFFFFF;  text-shadow: 4px 4px 8px green;">TEHSIL NAME</p>
+    <p style="color:#FFFFFF; font-size:30px;  text-shadow: 4px 4px 8px green;">{{area}}</p>
+         <br>
+    <p align="center" style="font-size: 25px;color:#FFFFFF;  text-shadow: 4px 4px 8px green;" >START DATE</p>
+           <div align="center"><input type="date" name="sdate" id="sdate" value=" "/></div><br><br>
+         <p align="center" style="font-size: 25px;color:#FFFFFF;  text-shadow: 4px 4px 8px green;">TASK Id</p>
+            <div align="center"><input type="text" name="edate" id="edate" value=" "/></div><br><br><br><br>
+    </div>
+     <div id="floating-panel" align="center">
+         <p style="font-size: 25px; color:#FFFFFF;  text-shadow: 4px 4px 8px green;">TASK DESCRIPTION</p><br>
+            <textarea rows="16" cols="30" name="desc" id="desc" >Enter text here...</textarea>
+     </div>
+<div id="floating-pane4" align="bottom">
+  <label style="color:white; text-shadow: 4px 4px 8px green; font-size:20px;">GENERAL</label>
+    <input type="number" id="gen" value=" " />
+       <label style="color:white; text-shadow: 4px 4px 8px green; font-size:20px;">SC</label>
+  <input type="number" id="sc" value=" "  />
+       <label style="color:white; text-shadow: 4px 4px 8px green; font-size:20px;">ST</label>
+      <input type="number" id="st" value=" "  />
+       <label style="color:white; text-shadow: 4px 4px 8px green; font-size:20px;">OBC</label>
+      <input type="number" id="obc" value=" "   />
+       <label style="color:white; text-shadow: 4px 4px 8px green; font-size:20px;">MUSLIM</label>
+      <input type="number" id="mus" value=" "   /><br><br>
+    <input type="submit" value="Submit" style="color:white;  text-shadow: 4px 4px 8px black; background-color:green " /><br></div>
+ </form>
+
+
+
+    <div id="map"></div>
+<script>
+    $(document).on('click', '.browse', function(){
+  var file = $(this).parent().parent().parent().find('.file');
+  file.trigger('click');
+});
+$(document).on('change', '.file', function(){
+  $(this).parent().find('.form-control').val($(this).val().replace(/C:\\fakepath\\/i, ''));
+});
+</script>
+    <script>
+
+      var map;
+      var infowindow;
+      var marker;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: {lat: 28, lng: 78}
+        });
+        infoWindow = new google.maps.InfoWindow;
+        var polylist1=[];
+          if ({{l}} != null){
+        for (var k =0; k <{{l}}.length; k++){
+        var line={{l}}[k];
+              console.log({lat: line[0], lng: line[1]});
+              polylist1.push ({lat: line[0], lng: line[1]});
+        }
+          document.getElementById("gen").value={{m}}[0];
+        document.getElementById("sc").value={{m}}[1];
+        document.getElementById("st").value={{m}}[2];
+        document.getElementById("obc").value={{m}}[3];
+        document.getElementById("mus").value={{m}}[4];
+        var polypath1 = new google.maps.Polygon({
+         paths: polylist1,
+        strokeColor: '#FF0000',
+         strokeOpacity: 0.8,
+         strokeWeight:5,
+         //fillColor: '#FF0000',
+         fillOpacity: 0
+        });
+        polypath1.setMap(map);
+        var pos = {
+              lat:{{pos}}[0] ,
+              lng: {{pos}}[1]
+            };
+        polypath1.setMap(map);
+        //infoWindow.setPosition(pos);
+        //infoWindow.setContent('General='+' ' + gen + 'SC='+ ' '+ sc  + 'ST='+' '+ st + 'OBC=' + ' ' +obc + 'Muslim=' +' ' + mus);
+        //infoWindow.open(map);
+        map.setCenter(pos);
+      }
+
+
+      if ({{north}} != null){
+    var bounds = {
+          north: {{north}},
+         south: {{south}},
+         east: {{east}},
+         west: {{west}}
+        };
+        map.fitBounds(bounds);
+        }
+
+}
+
+    </script>
+
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuCQItK2CtSoafNZkJduTGgsjGfGi2Fw4&callback=initMap">
+    </script>
+  </body>
+</html>

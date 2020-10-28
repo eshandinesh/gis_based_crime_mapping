@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>ELECTION MANAGEMENT SYSTEM</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+
+      .bg-1 {
+      background-color:Orange; /* Green */
+      color: #ffffff;
+  }
+
+  </style>
+</head>
+<body style="background-color:#FF6D00;">
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{%url 'home'%}" style="color: white; text-shadow: 4px 4px 8px #BDBDBD;">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="{%url 'home'%}" style="color: white; text-shadow: 4px 4px 8px #BDBDBD;">HOME</a></li>
+
+        <li><a href="{%url 'vidhan'%}" style="color: white; text-shadow: 4px 4px 8px #BDBDBD;">MAP</a></li>
+        <li><a href="{%url 'home'%}" style="color: white; text-shadow: 4px 4px 8px #BDBDBD;">TASK TO ALL</a></li>
+          <li><a href="{%url 'home'%}" style="color: white; text-shadow: 4px 4px 8px #BDBDBD;">VIEW REPORT</a></li>
+           <li><a href="{%url 'home'%}" style="color: white; text-shadow: 4px 4px 8px #BDBDBD;">CONTACT US</a></li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+<div class="container-fluid">
+<div class="col-sm-12 text-center"  style="background-color:#FF6D00;" align="center">
+         <h1 style="color:#FFFFFF;  text-shadow: 4px 4px 8px green;">LIST OF TASK</h1>
+       </div>
+
+</div>
+<hr size="6">
+<div class="container-fluid">
+<div class="media">
+  <div class="media-left">
+       {%load static %}
+
+    <img src="{%static "7.jpg"%}" class="media-object" style="width:60px">
+      </div>
+
+
+  <div class="media-body">
+    <h4 class="media-heading" >Shri Narendra Singh Tomar</h4>
+    <div class="col-sm-12" align="justify" style="background-color:#FF6D00;">
+         <a href="#" style="color:#000000;text-align:justify;"> <p  >
+             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+         </p></a>
+       </div>
+
+  </div>
+      <div class="media-right">
+       <button type="button" class="btn btn-success">DOWNLOAD</button><br><br>
+     <a href="{% url 'images'%}"> <button type="button" class="btn btn-success">VIEW IMAGES</button></a>
+      </div>
+
+    <hr size="3">
+    </div>
+    <div class="media">
+  <div class="media-left">
+       {%load static %}
+
+    <img src="{%static "7.jpg"%}" class="media-object" style="width:60px">
+      </div>
+
+  <div class="media-body">
+    <h4 class="media-heading">Shri Narendra Singh Tomar</h4>
+    <div class="col-sm-12" align="justify" style="background-color:#FF6D00;">
+         <a href="#" style="color:#000000;text-align:justify;"> <p >
+             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+         </p></a>
+       </div>
+
+  </div>
+ <div class="media-right">
+       <button type="button" class="btn btn-success">DOWNLOAD</button><br><br>
+     <button type="button" class="btn btn-success">VIEW IMAGES</button>
+      </div>
+    <hr size="3">
+    </div>
+    <div class="media">
+  <div class="media-left">
+       {%load static %}
+
+    <img src="{%static "7.jpg"%}" class="media-object" style="width:60px">
+      </div>
+
+  <div class="media-body">
+    <h4 class="media-heading">Shri Narendra Singh Tomar</h4>
+    <div class="col-sm-12" align="justify" style="background-color:#FF6D00;">
+         <a href="#" style="color:#000000;text-align:justify;"> <p >
+             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+         </p></a>
+       </div>
+
+  </div>
+ <div class="media-right">
+       <button type="button" class="btn btn-success">DOWNLOAD</button><br><br>
+     <button type="button" class="btn btn-success">VIEW IMAGES</button>
+      </div>
+    <hr size="3">
+    </div>
+    <div class="media">
+  <div class="media-left">
+       {%load static %}
+
+    <img src="{%static "7.jpg"%}" class="media-object" style="width:60px">
+      </div>
+
+  <div class="media-body">
+    <h4 class="media-heading">Shri Narendra Singh Tomar</h4>
+    <div class="col-sm-12" align="justify" style="background-color:#FF6D00;">
+         <a href="#" style="color:#000000;text-align:justify;"> <p >
+             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+         </p></a>
+       </div>
+
+  </div>
+ <div class="media-right">
+       <button type="button" class="btn btn-success">DOWNLOAD</button><br><br>
+     <button type="button" class="btn btn-success">VIEW IMAGES</button>
+      </div>
+    <hr size="3">
+    </div>
+    <div class="media">
+  <div class="media-left">
+       {%load static %}
+
+    <img src="{%static "7.jpg"%}" class="media-object" style="width:60px">
+      </div>
+
+  <div class="media-body">
+    <h4 class="media-heading">Shri Narendra Singh Tomar</h4>
+    <div class="col-sm-12" align="justify" style="background-color:#FF6D00;">
+         <a href="#" style="color:#000000;text-align:justify;"> <p >
+             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+         </p></a>
+       </div>
+
+  </div>
+ <div class="media-right">
+       <button type="button" class="btn btn-success">DOWNLOAD</button><br><br>
+     <button type="button" class="btn btn-success">VIEW IMAGES</button>
+      </div>
+    <hr size="3">
+    </div>
+    <div class="media">
+  <div class="media-left">
+       {%load static %}
+
+    <img src="{%static "7.jpg"%}" class="media-object" style="width:60px">
+      </div>
+
+  <div class="media-body">
+    <h4 class="media-heading">Shri Narendra Singh Tomar</h4>
+    <div class="col-sm-12" align="justify" style="background-color:#FF6D00;">
+         <a href="#" style="color:#000000;text-align:justify;"> <p >
+             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+         </p></a>
+       </div>
+
+  </div> <div class="media-right">
+       <button type="button" class="btn btn-success">DOWNLOAD</button><br><br>
+     <button type="button" class="btn btn-success">VIEW IMAGES</button>
+      </div>
+    <hr size="3">
+    </div>
+    <div class="media">
+  <div class="media-left">
+       {%load static %}
+
+    <img src="{%static "7.jpg"%}" class="media-object" style="width:60px">
+      </div>
+
+  <div class="media-body">
+    <h4 class="media-heading">Shri Narendra Singh Tomar</h4>
+    <div class="col-sm-12" align="justify" style="background-color:#FF6D00;">
+         <a href="#" style="color:#000000;text-align:justify;"> <p >
+             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+         </p></a>
+       </div>
+
+  </div>
+ <div class="media-right">
+       <button type="button" class="btn btn-success">DOWNLOAD</button><br><br>
+     <button type="button" class="btn btn-success">VIEW IMAGES</button>
+      </div>
+    <hr size="3">
+    </div>
+    <div class="media">
+  <div class="media-left">
+       {%load static %}
+
+    <img src="{%static "7.jpg"%}" class="media-object" style="width:60px">
+      </div>
+
+  <div class="media-body">
+    <h4 class="media-heading">Shri Narendra Singh Tomar</h4>
+    <div class="col-sm-12" align="justify" style="background-color:#FF6D00;">
+         <a href="#" style="color:#000000;text-align:justify;"> <p >
+             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+         </p></a>
+       </div>
+
+  </div>
+ <div class="media-right">
+       <button type="button" class="btn btn-success">DOWNLOAD</button><br><br>
+     <button type="button" class="btn btn-success">VIEW IMAGES</button>
+      </div>
+    <hr size="3">
+    </div>
+    <div class="media">
+  <div class="media-left">
+       {%load static %}
+
+    <img src="{%static "7.jpg"%}" class="media-object" style="width:60px">
+      </div>
+
+  <div class="media-body">
+    <h4 class="media-heading">Shri Narendra Singh Tomar</h4>
+    <div class="col-sm-12" align="justify" style="background-color:#FF6D00;">
+         <a href="#" style="color:#000000;text-align:justify;"> <p >
+             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+         </p></a>
+       </div>
+
+  </div>
+ <div class="media-right">
+       <button type="button" class="btn btn-success">DOWNLOAD</button><br><br>
+     <button type="button" class="btn btn-success">VIEW IMAGES</button>
+      </div>
+    <hr size="3">
+    </div>
+    <div class="media">
+  <div class="media-left">
+       {%load static %}
+
+    <img src="{%static "7.jpg"%}" class="media-object" style="width:60px">
+      </div>
+
+  <div class="media-body">
+    <h4 class="media-heading">Shri Narendra Singh Tomar</h4>
+    <div class="col-sm-12" align="justify" style="background-color:#FF6D00;">
+         <a href="#" style="color:#000000;text-align:justify;"> <p >
+             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+         </p></a>
+       </div>
+
+  </div>
+ <div class="media-right">
+       <button type="button" class="btn btn-success">DOWNLOAD</button><br><br>
+     <button type="button" class="btn btn-success">VIEW IMAGES</button>
+      </div>
+    <hr size="3">
+    </div>
+    <div class="media">
+  <div class="media-left">
+       {%load static %}
+
+    <img src="{%static "7.jpg"%}" class="media-object" style="width:60px">
+      </div>
+
+  <div class="media-body">
+    <h4 class="media-heading">Shri Narendra Singh Tomar</h4>
+    <div class="col-sm-12" align="justify" style="background-color:#FF6D00;">
+         <a href="#" style="color:#000000;text-align:justify;"> <p >
+             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+         </p></a>
+       </div>
+
+  </div>
+ <div class="media-right">
+     <button type="button" class="btn btn-success">DOWNLOAD</button><br><br>
+     <button type="button" class="btn btn-success">VIEW IMAGES</button>
+      </div>
+    <hr size="3">
+    </div>
+    <div class="media">
+  <div class="media-left">
+       {%load static %}
+
+    <img src="{%static "7.jpg"%}" class="media-object" style="width:60px">
+      </div>
+
+  <div class="media-body">
+    <h4 class="media-heading">Shri Narendra Singh Tomar</h4>
+    <div class="col-sm-12" align="justify" style="background-color:#FF6D00;">
+         <a href="#" style="color:#000000;text-align:justify;"> <p >
+             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+         </p></a>
+       </div>
+
+  </div>
+ <div class="media-right">
+      <button type="button" class="btn btn-success">DOWNLOAD</button><br><br>
+     <button type="button" class="btn btn-success">VIEW IMAGES</button>
+      </div>
+
+
+    <hr size="3">
+    </div>
+    <div class="media">
+  <div class="media-left">
+       {%load static %}
+
+    <img src="{%static "7.jpg"%}" class="media-object" style="width:60px">
+      </div>
+
+  <div class="media-body">
+    <h4 class="media-heading">Shri Narendra Singh Tomar</h4>
+    <div class="col-sm-12" align="justify" style="background-color:#FF6D00;">
+         <a href="#" style="color:#000000;text-align:justify;"> <p >
+             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+         </p></a>
+       </div>
+
+  </div>
+ <div class="media-right">
+       <button type="button" class="btn btn-success">DOWNLOAD</button><br><br>
+     <button type="button" class="btn btn-success">VIEW IMAGES</button>
+      </div>
+    <hr size="3">
+    </div>
+
+</div>
+
+</body>
+</html>

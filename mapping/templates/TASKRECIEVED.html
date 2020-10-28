@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+
+      .bg-1 {
+      background-color:Orange; /* Green */
+      color: #ffffff;
+  }
+
+  </style>
+</head>
+<body style="background-color:#FF6D00;">
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{%url 'home'%}">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="{%url 'home'%}">HOME</a></li>
+
+        <li><a href="{%url 'vidhan'%}">MAP</a></li>
+        <li><a href="{%url 'home'%}">TASK TO ALL</a></li>
+          <li><a href="{%url 'home'%}">VIEW REPORT</a></li>
+           <li><a href="{%url 'home'%}">CONTACT US</a></li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+<div class="container-fluid">
+     <div class="table-responsive">
+       <div class="col-sm-12 text-center"  style="background-color:#FF6D00;">
+         <h1 style="color:#FFFFFF;">LIST OF TASK</h1>
+       </div>
+  <table class="table table-bordered">
+    <thead>
+      <tr style="background-color:#1B5E20;">
+        <th class="text-center" style="color:#FFFFFF;">S.No.</th>
+        <th class="text-center" style="color:#FFFFFF;">TASK</th>
+        <th class="text-center" style="color:#FFFFFF;">GIVEN BY</th>
+        <th class="text-center" style="color:#FFFFFF;">START DATE OF TASK</th>
+        <th class="text-center" style="color:#FFFFFF;">END DATE OF TASK</th>
+
+      </tr>
+    </thead>
+    <tbody>
+
+     <tr style="background-color:#F0F4C3;">
+        <td class="text-center">1</td>
+       <td class="text-center"><a href="{%url 'VOLN'%}">Shri Narayan Singh Kushwah</a></td>
+        <td class="text-center">Gwalior North</td>
+        <td class="text-center">Default</td>
+        <td class="text-center">Defaultson</td>
+
+      </tr>
+       <tr style="background-color:#DCEDC8;">
+        <td class="text-center">2</td>
+         <td class="text-center"><a href="{%url 'home'%}">Shri Jaibhan Singh Pawaiya</a></td>
+        <td class="text-center">Gwalior</td>
+        <td class="text-center">Default</td>
+        <td class="text-center">Defaultson</td>
+      </tr>
+      <tr style="background-color:#F0F4C3;">
+        <td class="text-center">3</td>
+        <td class="text-center"><a href="{%url 'home'%}">Smt. Maya Singh</a></td>
+        <td class="text-center">Gwalior East</td>
+        <td class="text-center">Default</td>
+        <td class="text-center">Defaultson</td>
+      </tr>
+      <tr style="background-color:#DCEDC8;">
+        <td class="text-center">4</td>
+        <td class="text-center"><a href="{%url 'home'%}">Shri Anoop Mishra</a></td>
+        <td class="text-center">Bhitarwar</td>
+        <td class="text-center">Default</td>
+        <td class="text-center">Defaultson</td>
+      </tr>
+         <tr style="background-color:#F0F4C3;">
+        <td class="text-center">5</td>
+           <td class="text-center"><a href="{%url 'home'%}">Shri Suresh Raje</a></td>
+        <td class="text-center">Dabra</td>
+        <td class="text-center">Default</td>
+        <td class="text-center">Defaultson</td>
+      </tr>
+
+
+    </tbody>
+  </table>
+</div>
+</div>
+
+</body>
+</html>

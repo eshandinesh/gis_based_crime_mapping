@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Drawing tools</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      // This example requires the Drawing library. Include the libraries=drawing
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=drawing">
+
+       var p = [];
+      	var pt = [];
+	    var pl = [];
+	    var pg = [];
+	    var fa = [];
+	    var pg_json=[];
+      var map; // Global declaration of the map
+					var lat_longs = new Array();
+			var markers = new Array();
+			var drawingManager;
+			function initMap() {
+	   var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 6,
+          center: {lat:26, lng:78},
+        });
+
+	    var drawingManager = new google.maps.drawing.DrawingManager({
+			drawingMode: google.maps.drawing.OverlayType.POLYGON,
+			drawingControl: true,
+			drawingControlOptions: {
+			position: google.maps.ControlPosition.RIGHT_TOP,
+			drawingModes: [
+
+			  google.maps.drawing.OverlayType.POLYGON
+
+			]
+			},
+			polygonOptions: {
+			  editable: true
+			}
+	    });
+	    drawingManager.setMap(map);
+
+			google.maps.event.addListener(drawingManager, "overlaycomplete", function(event) {
+				var newShape = event.overlay;
+				newShape.type = event.type;
+			});
+
+            google.maps.event.addListener(drawingManager, "overlaycomplete", function(event){
+                  pg.push(event.overlay);
+                  if (pg.length > 0) {
+				for (i = 0; i < pg.length; i++) {
+					var p = [];
+					for (j = 0; j < pg[i].getPath().getLength(); j++) {
+						p.push( [pg[i].getPath().getAt(j).lat(),  pg[i].getPath().getAt(j).lng()])
+					}
+					pg_json.push({pg: p});
+				}
+
+			}
+               console.log( pg_json)
+               console.log( p)
+               document.getElementById('vertices').value = p ;
+
+                  });
+
+
+
+}
+
+
+
+    </script>
+ <form method="post" accept-charset="utf-8"  action="{% url 'shapecreator' %}" id="map_form">{% csrf_token %}
+    <input type="number" name="vertices" value="" id="vertices"  />
+    <input type="submit" name="save" value="Save!" id="save"  />
+</form>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuCQItK2CtSoafNZkJduTGgsjGfGi2Fw4&libraries=drawing&callback=initMap"
+         async defer></script>
+  </body>
+</html>

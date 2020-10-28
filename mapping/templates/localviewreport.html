@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>ELECTION MANAGEMENT SYSTEM</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker3.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js">
+
+    </script>
+  <style>
+
+      .bg-1 {
+      background-color:Orange; /* Green */
+      color: #ffffff;
+  }
+  .file {
+  visibility: hidden;
+  position: absolute;
+}
+
+  </style>
+</head>
+<body style="background-color:#FF6D00;">
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{%url 'home'%}" style="color: white; text-shadow: 4px 4px 8px #BDBDBD;">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="{%url 'home'%}" style="color: white; text-shadow: 4px 4px 8px #BDBDBD;">HOME</a></li>
+
+        <li><a href="{%url 'lok'%}" style="color: white; text-shadow: 4px 4px 8px #BDBDBD;">MAP</a></li>
+        <li><a href="{%url 'home'%}" style="color: white; text-shadow: 4px 4px 8px #BDBDBD;">TASK TO ALL</a></li>
+          <li><a href="{%url 'home'%}" style="color: white; text-shadow: 4px 4px 8px #BDBDBD;">VIEW REPORT</a></li>
+           <li><a href="{%url 'home'%}" style="color: white; text-shadow: 4px 4px 8px #BDBDBD;">CONTACT US</a></li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+<div class="container" align="center">
+
+
+
+
+
+    <div class="col-sm-12">
+    <div class="jumbotron" STYLE="height:150px; " align="center">
+        <p style="font-size: 30px; color:#FFFFFF;  text-shadow: 4px 4px 8px green; " >VIEW REPORT</p>
+
+
+    </div></div>
+
+
+
+
+
+   <div class="col-sm-12">
+    <div class="jumbotron" STYLE="height:330px; ">
+        <p style="font-size: 25px; color:#FFFFFF;  text-shadow: 4px 4px 8px green; ">TASK DESCRIPTION</p>
+        <TEXTAREA rows="10" cols="140" id="desc">Type your task here</TEXTAREA>
+    </div></div>
+    <div class="col-sm-6" style="width: 300;">
+        <a href="{% url 'drport'%}"> <button type="button" class="btn btn-success" style="font-size: 30px; color:#FFFFFF;  text-shadow: 4px 4px 8px green; ">DOWNLOAD REPORT</button></a></div>
+    <div class="col-sm-6" style="width: 300;">
+        <a href="{% url 'images'%}"> <button type="button" class="btn btn-success" style="font-size: 30px; color:#FFFFFF;  text-shadow: 4px 4px 8px green; ">VIEW IMAGES</button></a></div>
+
+</div>
+</body>
+</html>
